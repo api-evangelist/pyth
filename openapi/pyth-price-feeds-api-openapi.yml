@@ -1,0 +1,215 @@
+openapi: 3.1.0
+info:
+  title: Benchmarks Price Differences Price Feeds API
+  version: 0.3.6
+tags:
+- name: Price Feeds
+paths:
+  /v1/price_feeds/:
+    get:
+      tags:
+      - Price Feeds
+      summary: Price Feeds
+      description: Returns the price feed for all symbols or for selected symbols when filters are provided.
+      operationId: price_feeds_route_v1_price_feeds__get
+      parameters:
+      - name: query
+        in: query
+        required: false
+        schema:
+          type: string
+          description: If provided, the results will be filtered to all price feeds whose symbol contains the query string. Query string is case insensitive.
+          examples:
+          - eth
+          title: Query
+        description: If provided, the results will be filtered to all price feeds whose symbol contains the query string. Query string is case insensitive.
+      - name: asset_type
+        in: query
+        required: false
+        schema:
+          type: string
+          description: Filter by asset type. Possible values are `crypto`, `equity`, `fx`, `metal`, `rates`. Filter string is case insensitive.
+          examples:
+          - crypto
+          title: Asset Type
+        description: Filter by asset type. Possible values are `crypto`, `equity`, `fx`, `metal`, `rates`. Filter string is case insensitive.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PriceFeedsResponse'
+              examples:
+                PriceFeedsSuccessResponse:
+                  summary: PriceFeedsSuccessResponse
+                  value:
+                  - id: 49f6b65cb1de6b10eaf75e7c03ca029c306d0357e91b5311b175084a5ad55688
+                    market_hours:
+                      is_open: false
+                      next_open: 1686749400
+                      next_close: 1686772800
+                    attributes:
+                      asset_type: Equity
+                      country: US
+                      description: APPLE INC
+                      quote_currency: USD
+                      cms_symbol: AAPL
+                      cqs_symbol: AAPL
+                      nasdaq_symbol: AAPL
+                      symbol: Equity.US.AAPL/USD
+                      base: AAPL
+        '400':
+          description: Error
+          content:
+            application/json:
+              examples:
+                PriceFeedsInvalidAssetTypeResponse:
+                  summary: PriceFeedsInvalidAssetTypeResponse
+                  value: Invalid asset type. Possible values are `crypto`, `equity`, `fx`, `metal`, `rates`.
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v1/price_feeds/{id}:
+    get:
+      tags:
+      - Price Feeds
+      summary: Price Feed
+      description: Returns the price feed for the given id.
+      operationId: price_feed_route_v1_price_feeds__id__get
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          pattern: ^(0x)?[0-9A-Fa-f]{64}$
+          description: The id of the price feed to be returned.
+          examples:
+          - 49f6b65cb1de6b10eaf75e7c03ca029c306d0357e91b5311b175084a5ad55688
+          title: Id
+        description: The id of the price feed to be returned.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PriceFeedResponse'
+              examples:
+                PriceFeedSuccessResponse:
+                  summary: PriceFeedSuccessResponse
+                  value:
+                    id: 49f6b65cb1de6b10eaf75e7c03ca029c306d0357e91b5311b175084a5ad55688
+                    market_hours:
+                      is_open: false
+                      next_open: 1686749400
+                      next_close: 1686772800
+                    attributes:
+                      asset_type: Equity
+                      country: US
+                      description: APPLE INC
+                      quote_currency: USD
+                      cms_symbol: AAPL
+                      cqs_symbol: AAPL
+                      nasdaq_symbol: AAPL
+                      symbol: Equity.US.AAPL/USD
+                      base: AAPL
+        '404':
+          description: Error
+          content:
+            application/json:
+              examples:
+                PriceFeedErrorResponse:
+                  summary: PriceFeedErrorResponse
+                  value: Price feed for the given id 1234abcdb1de6b10eaf75e7c03ca029c306d0357e91b5311b175084a5ad55688 not found.
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    PriceFeed:
+      properties:
+        id:
+          type: string
+          title: Id
+        market_hours:
+          anyOf:
+          - $ref: '#/components/schemas/MarketHours'
+          - type: 'null'
+        attributes:
+          additionalProperties:
+            type: string
+          type: object
+          title: Attributes
+      type: object
+      required:
+      - id
+      - market_hours
+      - attributes
+      title: PriceFeed
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    PriceFeedsResponse:
+      items:
+        $ref: '#/components/schemas/PriceFeed'
+      type: array
+      title: PriceFeedsResponse
+    PriceFeedResponse:
+      $ref: '#/components/schemas/PriceFeed'
+      title: PriceFeedResponse
+    MarketHours:
+      properties:
+        is_open:
+          type: boolean
+          title: Is Open
+        next_open:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Next Open
+        next_close:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Next Close
+      type: object
+      required:
+      - is_open
+      - next_open
+      - next_close
+      title: MarketHours

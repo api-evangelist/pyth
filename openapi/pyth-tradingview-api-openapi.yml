@@ -1,0 +1,1000 @@
+openapi: 3.1.0
+info:
+  title: Benchmarks Price Differences TradingView API
+  version: 0.3.6
+  description: Routes for TradingView Data Integration.
+tags:
+- name: TradingView
+  description: Routes for TradingView Data Integration.
+paths:
+  /v1/shims/tradingview/history:
+    get:
+      tags:
+      - TradingView
+      summary: History
+      description: "Request for history bars. Each property of the response object is treated as a table column. \n\nData follows these requirements:\n\n- real-time data obtained from the API streaming endpoint must match the historical data, obtained from the /history API. The allowed count of mismatched bars (candles) must not exceed 5% for frequently traded symbols, otherwise the integration to TradingView is not possible;\n- the data must not include unreasonable price gaps, historical data gaps on 1-minute and Daily-resolutions (temporal gaps), obviously incorrect prices (adhesions).\n\nIf there is no data in the requested time period, endpoint returns an empty response: `{\"s\":\"ok\",\"t\":[],\"o\":[],\"h\":[],\"l\":[],\"c\":[],\"v\":[]}`"
+      operationId: tradingview_history_route_v1_shims_tradingview_history_get
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+          description: Symbol name or ticker. This is case-insensitive.
+          examples:
+          - Crypto.BTC/USD
+          title: Symbol
+        description: Symbol name or ticker. This is case-insensitive.
+      - name: resolution
+        in: query
+        required: true
+        schema:
+          type: string
+          description: Symbol resolution. Possible resolutions are 1, 2, 5, 15, 30, 60, 120, 240, 360, 720, D, 1D, W, 1W, M, 1M. D, W, M are aliases for 1D, 1W, 1M correspondingly. D and 1D mean the same and equal to 1 day. 1W means 1 week. 1M means 1 month.
+          examples:
+          - '1'
+          title: Resolution
+        description: Symbol resolution. Possible resolutions are 1, 2, 5, 15, 30, 60, 120, 240, 360, 720, D, 1D, W, 1W, M, 1M. D, W, M are aliases for 1D, 1W, 1M correspondingly. D and 1D mean the same and equal to 1 day. 1W means 1 week. 1M means 1 month.
+      - name: from
+        in: query
+        required: true
+        schema:
+          type: integer
+          description: Unix timestamp (UTC) of the leftmost required bar, including from.
+          examples:
+          - 1684137600
+          title: From
+        description: Unix timestamp (UTC) of the leftmost required bar, including from.
+      - name: to
+        in: query
+        required: true
+        schema:
+          type: integer
+          description: Unix timestamp (UTC) of the rightmost required bar, including to. It can be in the future. In this case, the rightmost required bar is the latest available bar.
+          examples:
+          - 1684141200
+          title: To
+        description: Unix timestamp (UTC) of the rightmost required bar, including to. It can be in the future. In this case, the rightmost required bar is the latest available bar.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/TradingViewHistoryResponse'
+                - $ref: '#/components/schemas/TradingViewErrorResponse'
+                title: Response Tradingview History Route V1 Shims Tradingview History Get
+              examples:
+                HistorySuccessResponse:
+                  summary: HistorySuccessResponse
+                  value:
+                    s: ok
+                    t:
+                    - 1684127160
+                    - 1684127220
+                    o:
+                    - 27281.83
+                    - 27297.19886
+                    h:
+                    - 27296.75
+                    - 27300.03417102
+                    l:
+                    - 27279.24580449
+                    - 27292.33027595
+                    c:
+                    - 27296.35698548
+                    - 27294.0
+                    v:
+                    - 0
+                    - 0
+                HistoryEmptyBarResponse:
+                  summary: HistoryEmptyBarResponse
+                  value:
+                    s: ok
+                    t: []
+                    o: []
+                    h: []
+                    l: []
+                    c: []
+                    v: []
+                ErrorResponse:
+                  summary: ErrorResponse
+                  value:
+                    s: error
+                    errmsg: An error occured.
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v1/shims/tradingview/groups:
+    get:
+      tags:
+      - TradingView
+      summary: Groups
+      operationId: get_groups_v1_shims_tradingview_groups_get
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TradingViewGroupsResponse'
+              examples:
+                GroupsSuccessResponse:
+                  summary: GroupsSuccessResponse
+                  value:
+                    s: ok
+                    d:
+                      groups:
+                      - id: pyth_stock
+                      - id: pyth_forex
+                      - id: pyth_crypto
+                      - id: pyth_cfd
+                      - id: pyth_bonds
+                      - id: pyth_cont
+  /v1/shims/tradingview/symbol_info:
+    get:
+      tags:
+      - TradingView
+      summary: Symbol Info
+      description: Get a list of all instruments.
+      operationId: get_symbol_info_v1_shims_tradingview_symbol_info_get
+      parameters:
+      - name: group
+        in: query
+        required: false
+        schema:
+          type: string
+          description: ID of a symbol group. If it is present then only symbols that belong to this group should be returned. Possible values are provided by the /groups endpoint.
+          examples:
+          - pyth_stock
+          title: Group
+        description: ID of a symbol group. If it is present then only symbols that belong to this group should be returned. Possible values are provided by the /groups endpoint.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/TradingViewSymbolInfoResponse'
+                - $ref: '#/components/schemas/TradingViewErrorResponse'
+                title: Response Get Symbol Info V1 Shims Tradingview Symbol Info Get
+              examples:
+                SymbolInfoSuccessResponse:
+                  summary: SymbolInfoSuccessResponse
+                  value:
+                    s: ok
+                    symbol:
+                    - 1INCHUSD
+                    - AAPL
+                    - AAVEUSD
+                    description:
+                    - 1INCH / US DOLLAR
+                    - APPLE INC / US DOLLAR
+                    - AAVE / US DOLLAR
+                    currency:
+                    - USD
+                    - USD
+                    - USD
+                    exchange_listed:
+                    - PYTH
+                    - PYTH
+                    - PYTH
+                    exchange_traded:
+                    - PYTH
+                    - PYTH
+                    - PYTH
+                    minmovement:
+                    - 1
+                    - 1
+                    - 1
+                    pricescale:
+                    - 100000000
+                    - 100000
+                    - 100000000
+                    timezone:
+                    - Etc/UTC
+                    - America/New_York
+                    - Etc/UTC
+                    type:
+                    - crypto
+                    - stock
+                    - crypto
+                    session_regular:
+                    - 24x7
+                    - 0930-1600
+                    - 24x7
+                    base_currency:
+                    - null
+                    - null
+                    - null
+                    minmovement2:
+                    - 0
+                    - 0
+                    - 0
+                    fractional:
+                    - false
+                    - false
+                    - false
+                    root:
+                    - null
+                    - null
+                    - null
+                    root_description:
+                    - null
+                    - null
+                    - null
+                    has_intraday:
+                    - true
+                    - true
+                    - true
+                    has_no_volume:
+                    - true
+                    - true
+                    - true
+                    ticker:
+                    - 1INCH/USD
+                    - AAPL/USD
+                    - AAVE/USD
+                    supported_resolutions:
+                    - - '1'
+                    - - '1'
+                    - - '1'
+                    has_daily:
+                    - false
+                    - false
+                    - false
+                    intraday_multipliers:
+                    - - '1'
+                    - - '1'
+                    - - '1'
+                    has_weekly_and_monthly:
+                    - false
+                    - false
+                    - false
+                    pointvalue:
+                    - 1
+                    - 1
+                    - 1
+                    expiration:
+                    - null
+                    - null
+                    - null
+                    bar_source:
+                    - trade
+                    - trade
+                    - trade
+                    bar_transform:
+                    - none
+                    - none
+                    - none
+                    bar_fillgaps:
+                    - false
+                    - false
+                    - false
+                    typespecs:
+                    - crypto
+                    - crypto
+                    - crypto
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v1/shims/tradingview/symbols:
+    get:
+      tags:
+      - TradingView
+      summary: Symbol Resolution
+      description: Request for symbol resolution data.
+      operationId: tradingview_symbols_route_v1_shims_tradingview_symbols_get
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+          description: Symbol name or ticker.
+          examples:
+          - Crypto.BTC/USD
+          title: Symbol
+        description: Symbol name or ticker.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/TradingViewSymbolsResponse'
+                - $ref: '#/components/schemas/TradingViewErrorResponse'
+                title: Response Tradingview Symbols Route V1 Shims Tradingview Symbols Get
+              examples:
+                SymbolsSuccessResponse:
+                  summary: SymbolsSuccessResponse
+                  value:
+                    name: BTCUSD
+                    description: BITCOIN / US DOLLAR
+                    session: 24x7
+                    ticker: Crypto.BTC/USD
+                    has_intraday: true
+                    has_daily: true
+                    has_weekly_and_monthly: true
+                    intraday_multipliers:
+                    - '1'
+                    - '2'
+                    - '5'
+                    - '15'
+                    - '30'
+                    - '60'
+                    - '120'
+                    - '240'
+                    - '360'
+                    - '720'
+                    daily_multipliers:
+                    - '1'
+                    weekly_multipliers:
+                    - '1'
+                    monthly_multipliers:
+                    - '1'
+                    timezone: Etc/UTC
+                    minmov: 1
+                    pricescale: 100000000
+                    supported_resolutions:
+                    - '1'
+                    - '2'
+                    - '5'
+                    - '15'
+                    - '30'
+                    - '60'
+                    - '120'
+                    - '240'
+                    - '360'
+                    - '720'
+                    - D
+                    - 1D
+                    - W
+                    - 1W
+                    - M
+                    - 1M
+                    exchange: PYTH
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v1/shims/tradingview/search:
+    get:
+      tags:
+      - TradingView
+      summary: Symbol Search
+      description: Request for symbol search data.
+      operationId: tradingview_search_route_v1_shims_tradingview_search_get
+      parameters:
+      - name: query
+        in: query
+        required: true
+        schema:
+          type: string
+          description: Text typed by the user in the Symbol Search edit box.
+          examples:
+          - BTC
+          title: Query
+        description: Text typed by the user in the Symbol Search edit box.
+      - name: type
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Type of the requested symbol. If no type is provided, all types should be returned.
+          examples:
+          - spot
+          title: Type
+        description: Type of the requested symbol. If no type is provided, all types should be returned.
+      - name: exchange
+        in: query
+        required: false
+        schema:
+          type: string
+          description: Exchange name of the requested symbol. Default value is PYTH.
+          examples:
+          - PYTH
+          default: PYTH
+          title: Exchange
+        description: Exchange name of the requested symbol. Default value is PYTH.
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: The maximum number of symbols in a response. Default value is 15.
+          examples:
+          - '15'
+          default: 15
+          title: Limit
+        description: The maximum number of symbols in a response. Default value is 15.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TradingViewSearchResponse'
+              examples:
+                SearchSuccessResponse:
+                  summary: SearchSuccessResponse
+                  value:
+                  - description: BITCOIN CASH / US DOLLAR
+                    exchange: PYTH
+                    full_name: Crypto.BCH/USD
+                    symbol: BCHUSD
+                    ticker: Crypto.BCH/USD
+                    type: crypto
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v1/shims/tradingview/config:
+    get:
+      tags:
+      - TradingView
+      summary: Data Feed Configuration Data
+      description: Request for config data.
+      operationId: tradingview_config_route_v1_shims_tradingview_config_get
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TradingViewConfigResponse'
+              examples:
+                ConfigSuccessResponse:
+                  summary: ConfigSuccessResponse
+                  value:
+                    supported_resolutions:
+                    - '1'
+                    - '2'
+                    - '5'
+                    - '15'
+                    - '30'
+                    - '60'
+                    - '120'
+                    - '240'
+                    - '360'
+                    - '720'
+                    - D
+                    - 1D
+                    - W
+                    - 1W
+                    - M
+                    - 1M
+                    supports_group_request: false
+                    supports_marks: false
+                    supports_search: true
+                    supports_timescale_marks: false
+  /v1/shims/tradingview/streaming:
+    get:
+      tags:
+      - TradingView
+      summary: Streaming
+      description: Request for streaming data. `f` is always "t" and `s` is always 0.
+      operationId: tradingview_streaming_route_v1_shims_tradingview_streaming_get
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TradingViewStreamResponse'
+              examples:
+                StreamSuccessResponse:
+                  summary: StreamSuccessResponse
+                  value:
+                    id: Crypto.BTC/USD
+                    p: 30416.745
+                    t: 1687766105
+                    f: t
+                    s: 0
+components:
+  schemas:
+    TradingViewSymbolsResponse:
+      properties:
+        name:
+          type: string
+          title: Name
+        description:
+          type: string
+          title: Description
+        session:
+          type: string
+          title: Session
+        ticker:
+          type: string
+          title: Ticker
+        has_intraday:
+          type: boolean
+          title: Has Intraday
+        has_daily:
+          type: boolean
+          title: Has Daily
+        has_weekly_and_monthly:
+          type: boolean
+          title: Has Weekly And Monthly
+        intraday_multipliers:
+          items:
+            type: string
+          type: array
+          title: Intraday Multipliers
+        daily_multipliers:
+          items:
+            type: string
+          type: array
+          title: Daily Multipliers
+        weekly_multipliers:
+          items:
+            type: string
+          type: array
+          title: Weekly Multipliers
+        monthly_multipliers:
+          items:
+            type: string
+          type: array
+          title: Monthly Multipliers
+        timezone:
+          type: string
+          title: Timezone
+        minmov:
+          type: integer
+          title: Minmov
+        pricescale:
+          type: integer
+          title: Pricescale
+        supported_resolutions:
+          items:
+            type: string
+          type: array
+          title: Supported Resolutions
+        exchange:
+          type: string
+          title: Exchange
+      type: object
+      required:
+      - name
+      - description
+      - session
+      - ticker
+      - has_intraday
+      - has_daily
+      - has_weekly_and_monthly
+      - intraday_multipliers
+      - daily_multipliers
+      - weekly_multipliers
+      - monthly_multipliers
+      - timezone
+      - minmov
+      - pricescale
+      - supported_resolutions
+      - exchange
+      title: TradingViewSymbolsResponse
+    TradingViewHistoryResponse:
+      properties:
+        s:
+          type: string
+          title: S
+        t:
+          items:
+            type: integer
+          type: array
+          title: T
+        o:
+          items:
+            type: number
+          type: array
+          title: O
+        h:
+          items:
+            type: number
+          type: array
+          title: H
+        l:
+          items:
+            type: number
+          type: array
+          title: L
+        c:
+          items:
+            type: number
+          type: array
+          title: C
+        v:
+          items:
+            type: number
+          type: array
+          title: V
+      type: object
+      required:
+      - s
+      - t
+      - o
+      - h
+      - l
+      - c
+      - v
+      title: TradingViewHistoryResponse
+    TradingViewGroup:
+      properties:
+        id:
+          type: string
+          title: Id
+      type: object
+      required:
+      - id
+      title: TradingViewGroup
+    TradingViewGroupList:
+      properties:
+        groups:
+          items:
+            $ref: '#/components/schemas/TradingViewGroup'
+          type: array
+          title: Groups
+      type: object
+      required:
+      - groups
+      title: TradingViewGroupList
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    TradingViewSearchResponse:
+      items:
+        $ref: '#/components/schemas/TradingViewSearchSymbolResultItem'
+      type: array
+      title: TradingViewSearchResponse
+    TradingViewConfigResponse:
+      properties:
+        supported_resolutions:
+          items:
+            type: string
+          type: array
+          title: Supported Resolutions
+        supports_group_request:
+          type: boolean
+          title: Supports Group Request
+        supports_marks:
+          type: boolean
+          title: Supports Marks
+        supports_search:
+          type: boolean
+          title: Supports Search
+        supports_timescale_marks:
+          type: boolean
+          title: Supports Timescale Marks
+      type: object
+      required:
+      - supported_resolutions
+      - supports_group_request
+      - supports_marks
+      - supports_search
+      - supports_timescale_marks
+      title: TradingViewConfigResponse
+    TradingViewSymbolInfoResponse:
+      properties:
+        s:
+          type: string
+          title: S
+        symbol:
+          items:
+            type: string
+          type: array
+          title: Symbol
+        description:
+          items:
+            type: string
+          type: array
+          title: Description
+        currency:
+          items:
+            anyOf:
+            - type: string
+            - type: 'null'
+          type: array
+          title: Currency
+        exchange-listed:
+          items:
+            type: string
+          type: array
+          title: Exchange-Listed
+        exchange-traded:
+          items:
+            type: string
+          type: array
+          title: Exchange-Traded
+        minmovement:
+          items:
+            type: integer
+          type: array
+          title: Minmovement
+        pricescale:
+          items:
+            type: integer
+          type: array
+          title: Pricescale
+        timezone:
+          items:
+            type: string
+          type: array
+          title: Timezone
+        type:
+          items:
+            type: string
+          type: array
+          title: Type
+        session-regular:
+          items:
+            type: string
+          type: array
+          title: Session-Regular
+        base-currency:
+          items:
+            anyOf:
+            - type: string
+            - type: 'null'
+          type: array
+          title: Base-Currency
+        minmovement2:
+          items:
+            type: integer
+          type: array
+          title: Minmovement2
+        fractional:
+          items:
+            type: boolean
+          type: array
+          title: Fractional
+        root:
+          items:
+            anyOf:
+            - type: string
+            - type: 'null'
+          type: array
+          title: Root
+        root-description:
+          items:
+            anyOf:
+            - type: string
+            - type: 'null'
+          type: array
+          title: Root-Description
+        has-intraday:
+          items:
+            type: boolean
+          type: array
+          title: Has-Intraday
+        has-no-volume:
+          items:
+            type: boolean
+          type: array
+          title: Has-No-Volume
+        ticker:
+          items:
+            type: string
+          type: array
+          title: Ticker
+        supported-resolutions:
+          items:
+            items:
+              type: string
+            type: array
+          type: array
+          title: Supported-Resolutions
+          default: []
+        has-daily:
+          items:
+            type: boolean
+          type: array
+          title: Has-Daily
+        intraday-multipliers:
+          items:
+            items:
+              type: string
+            type: array
+          type: array
+          title: Intraday-Multipliers
+          default: []
+        has-weekly-and-monthly:
+          items:
+            type: boolean
+          type: array
+          title: Has-Weekly-And-Monthly
+        weekly-multipliers:
+          items:
+            items:
+              type: string
+            type: array
+          type: array
+          title: Weekly-Multipliers
+          default: []
+        monthly-multipliers:
+          items:
+            items:
+              type: string
+            type: array
+          type: array
+          title: Monthly-Multipliers
+          default: []
+        pointvalue:
+          items:
+            type: number
+          type: array
+          title: Pointvalue
+        expiration:
+          items:
+            anyOf:
+            - type: integer
+            - type: 'null'
+          type: array
+          title: Expiration
+        bar-source:
+          items:
+            type: string
+          type: array
+          title: Bar-Source
+        bar-transform:
+          items:
+            type: string
+          type: array
+          title: Bar-Transform
+        bar-fillgaps:
+          items:
+            type: boolean
+          type: array
+          title: Bar-Fillgaps
+        typespecs:
+          items:
+            type: string
+          type: array
+          title: Typespecs
+      type: object
+      required:
+      - s
+      - symbol
+      - description
+      - exchange-listed
+      - exchange-traded
+      - minmovement
+      - pricescale
+      - timezone
+      - type
+      - session-regular
+      - base-currency
+      - minmovement2
+      - fractional
+      - root
+      - root-description
+      - has-intraday
+      - has-no-volume
+      - ticker
+      - has-daily
+      - has-weekly-and-monthly
+      - pointvalue
+      - bar-source
+      - bar-transform
+      - bar-fillgaps
+      - typespecs
+      title: TradingViewSymbolInfoResponse
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    TradingViewGroupsResponse:
+      properties:
+        s:
+          type: string
+          title: S
+        d:
+          $ref: '#/components/schemas/TradingViewGroupList'
+      type: object
+      required:
+      - s
+      - d
+      title: TradingViewGroupsResponse
+    TradingViewSearchSymbolResultItem:
+      properties:
+        description:
+          type: string
+          title: Description
+        exchange:
+          type: string
+          title: Exchange
+        full_name:
+          type: string
+          title: Full Name
+        symbol:
+          type: string
+          title: Symbol
+        ticker:
+          type: string
+          title: Ticker
+        type:
+          type: string
+          title: Type
+      type: object
+      required:
+      - description
+      - exchange
+      - full_name
+      - symbol
+      - ticker
+      - type
+      title: TradingViewSearchSymbolResultItem
+    TradingViewStreamResponse:
+      properties:
+        id:
+          type: string
+          title: Id
+        p:
+          type: number
+          title: P
+        t:
+          type: integer
+          title: T
+        f:
+          type: string
+          title: F
+        s:
+          type: integer
+          title: S
+      type: object
+      required:
+      - id
+      - p
+      - t
+      - f
+      - s
+      title: TradingViewStreamResponse
+    TradingViewErrorResponse:
+      properties:
+        s:
+          type: string
+          title: S
+        errmsg:
+          type: string
+          title: Errmsg
+      type: object
+      required:
+      - s
+      - errmsg
+      title: TradingViewErrorResponse

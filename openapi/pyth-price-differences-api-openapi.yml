@@ -1,0 +1,84 @@
+openapi: 3.1.0
+info:
+  title: Benchmarks Price Differences API
+  version: 0.3.6
+tags:
+- name: Price Differences
+paths:
+  /v1/price_differences/:
+    get:
+      tags:
+      - Price Differences
+      summary: Price Differences
+      description: Returns an array of objects with hourly, daily, and weekly close price difference per symbol as well as close prices for each hour for the past 7 days for charting sparklines. There is no rounding to a specific time of day, so the weekly close price difference is relative to 1 week ago at the current time.
+      operationId: price_differences_route_v1_price_differences__get
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PriceDifferencesResponse'
+              examples:
+                PriceDifferencesSuccessResponse:
+                  summary: PriceDifferencesSuccessResponse
+                  value:
+                  - symbol: Crypto.BTC/USD
+                    hour_price_diff_decimal: -0.0012
+                    day_price_diff_decimal: 0.0234
+                    week_price_diff_decimal: 0.0567
+                    sparkline:
+                    - 42000.5
+                    - 42100.3
+                    - 42050.7
+                    - 42200.1
+                    - 42150.9
+                  - symbol: Crypto.ETH/USD
+                    hour_price_diff_decimal: 0.0045
+                    day_price_diff_decimal: -0.0123
+                    sparkline:
+                    - 2800.5
+                    - 2810.3
+                    - 2805.7
+                    - 2820.1
+                    - 2815.9
+components:
+  schemas:
+    PriceDifferencesResponse:
+      items:
+        $ref: '#/components/schemas/PriceDifference'
+      type: array
+      title: PriceDifferencesResponse
+    PriceDifference:
+      properties:
+        symbol:
+          type: string
+          title: Symbol
+        hour_price_diff_decimal:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Hour Price Diff Decimal
+        day_price_diff_decimal:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Day Price Diff Decimal
+        week_price_diff_decimal:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Week Price Diff Decimal
+        sparkline:
+          items:
+            type: number
+          type: array
+          title: Sparkline
+      type: object
+      required:
+      - symbol
+      - hour_price_diff_decimal
+      - day_price_diff_decimal
+      - week_price_diff_decimal
+      - sparkline
+      title: PriceDifference
