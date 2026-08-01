@@ -1,0 +1,42 @@
+generated: '2026-07-20'
+method: searched
+source: docs.pyth.network, openapi/pyth-hermes-openapi-original.json, openapi/pyth-benchmarks-openapi-original.json
+authentication:
+  style: >-
+    Public read APIs today (Hermes / Benchmarks); Pyth Pro uses `Authorization: Bearer {key}`.
+    See authentication/pyth-authentication.yml.
+idempotency:
+  supported: false
+  reason: >-
+    All Hermes and Benchmarks operations are read-only GET requests; there is no state-mutating
+    write surface and therefore no idempotency-key contract. (On-chain writes happen via smart
+    contracts, outside the REST API.)
+pagination:
+  style: offset-limit / query-parameter filtering
+  notes: >-
+    Benchmarks price_feeds and TradingView shim endpoints accept query params (query, asset_type,
+    limit, offset on the MCP get_symbols surface). Hermes price update endpoints select feeds by
+    explicit price feed id(s) rather than paging.
+data_model:
+  price_scale: actual_value = price * 10^expo (expo typically -8)
+  confidence_interval: each price carries a `conf` field (same scale as price) for risk-adjusted pricing
+  staleness: consumers must enforce a max-age (getPriceNoOlderThan / publish_time), pull model
+encoding:
+  formats: [json, hex, base64]
+  notes: BinaryUpdate encoding selectable via `encoding` query param (hex|base64) on Hermes v2 updates.
+streaming:
+  server_sent_events: GET /v2/updates/price/stream (Hermes SSE)
+  websocket: Pyth Pro (Lazer) low-latency streaming with configurable channels (1ms-1s)
+versioning:
+  scheme: uri-path
+  current: v2 (Hermes), v1 (Benchmarks)
+  legacy: Hermes /api/* endpoints are the v1 surface, superseded by /v2/*
+rate_limiting:
+  signaling: Hermes public endpoint is rate-limited; a Pyth API key will be required from 2026-08-18.
+error_envelope:
+  hermes: plain HTTP status codes (404 for unknown feed/timestamp)
+  benchmarks: FastAPI validation envelope (HTTPValidationError, 422) + TradingView error response shape
+cross_links:
+  errors: errors/pyth-problem-types.yml
+  lifecycle: lifecycle/pyth-lifecycle.yml
+  authentication: authentication/pyth-authentication.yml

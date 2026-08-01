@@ -1,0 +1,26 @@
+generated: '2026-07-20'
+method: searched
+source: docs.pyth.network/price-feeds/changelog, status.pyth.network, docs.pyth.network/price-feeds/core/getting-started
+versioning:
+  scheme: uri-path
+  current: v2 (Hermes), v1 (Benchmarks)
+  legacy: Hermes /api/* is the v1 surface, superseded by /v2/*
+deprecation:
+  policy_url: https://docs.pyth.network/price-feeds/changelog
+  legacy_endpoints:
+    - openapi/pyth-hermes-openapi-original.json#get_price_feed
+    - openapi/pyth-hermes-openapi-original.json#get_vaa
+    - openapi/pyth-hermes-openapi-original.json#get_vaa_ccip
+    - openapi/pyth-hermes-openapi-original.json#latest_price_feeds
+    - openapi/pyth-hermes-openapi-original.json#latest_vaas
+    - openapi/pyth-hermes-openapi-original.json#price_feed_ids
+  breaking_changes:
+    - date: '2026-08-18'
+      change: >-
+        The Hermes public price API will require a Pyth API key. Unauthenticated access to the
+        Hermes endpoints is being retired.
+status_page: https://status.pyth.network
+changelog: https://docs.pyth.network/price-feeds/changelog
+notes: >-
+  Pyth publishes a daily-dated changelog dominated by price-feed additions/removals; feed catalog
+  changes are frequent (see changelog/pyth-changelog.yml).

@@ -1,8 +1,14 @@
 aid: pyth
 name: Pyth
-description: 'Pyth is a company surfaced as a portfolio company of multicoin-capital and added to the
-  API Evangelist network as a stub for enrichment. Sector: crypto-web3. This profile is a lead awaiting
-  the enrichment pipeline.'
+description: >-
+  Pyth Network is a first-party financial oracle delivering real-time market data — 500+ price
+  feeds spanning crypto, equities, FX, metals, rates, and commodities — to 100+ blockchains. Its
+  pull-based Pyth Core oracle lets applications fetch signed prices from the Hermes service and
+  verify them on-chain in a single transaction with 400ms updates, while Pyth Pro (Lazer) offers
+  enterprise low-latency WebSocket streaming. Additional products include Entropy for on-chain
+  randomness and Express Relay for MEV protection. Pyth exposes public REST/SSE APIs (Hermes,
+  Benchmarks), first-party SDKs across TypeScript, Rust, Python and Solidity, a hosted MCP server,
+  and a published agent-integration skill. Surfaced as a portfolio company of Multicoin Capital.
 url: https://raw.githubusercontent.com/api-evangelist/pyth/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -10,18 +16,144 @@ x-backed-by:
 - multicoin-capital
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://pyth.network/favicon.ico
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
 - Crypto Web3
-apis: []
+- Oracle
+- Price Feeds
+- Market Data
+- DeFi
+- Blockchain
+- Financial Data
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: pyth:pyth-price-differences-api
+  name: Pyth Price Differences API
+  description: The Price Differences API from Pyth — 1 operation(s) for price differences.
+  humanURL: https://docs.pyth.network/price-feeds/core
+  baseURL: https://hermes.pyth.network
+  tags:
+  - Price Differences
+  properties:
+  - type: OpenAPI
+    url: openapi/pyth-price-differences-api-openapi.yml
+- aid: pyth:pyth-price-feeds-api
+  name: Pyth Price Feeds API
+  description: The Price Feeds API from Pyth — 2 operation(s) for price feeds.
+  humanURL: https://docs.pyth.network/price-feeds/core
+  baseURL: https://hermes.pyth.network
+  tags:
+  - Price Feeds
+  properties:
+  - type: OpenAPI
+    url: openapi/pyth-price-feeds-api-openapi.yml
+- aid: pyth:pyth-rest-api
+  name: Pyth rest API
+  description: The rest API from Pyth — 11 operation(s) for rest.
+  humanURL: https://docs.pyth.network/price-feeds/core
+  baseURL: https://hermes.pyth.network
+  tags:
+  - rest
+  properties:
+  - type: OpenAPI
+    url: openapi/pyth-rest-api-openapi.yml
+- aid: pyth:pyth-tradingview-api
+  name: Pyth TradingView API
+  description: Routes for TradingView Data Integration.
+  humanURL: https://docs.pyth.network/price-feeds/core
+  baseURL: https://hermes.pyth.network
+  tags:
+  - TradingView
+  properties:
+  - type: OpenAPI
+    url: openapi/pyth-tradingview-api-openapi.yml
+- aid: pyth:pyth-updates-api
+  name: Pyth Updates API
+  description: The Updates API from Pyth — 2 operation(s) for updates.
+  humanURL: https://docs.pyth.network/price-feeds/core
+  baseURL: https://hermes.pyth.network
+  tags:
+  - Updates
+  properties:
+  - type: OpenAPI
+    url: openapi/pyth-updates-api-openapi.yml
 common:
 - type: Website
   url: https://pyth.network
+- type: DeveloperPortal
+  url: https://docs.pyth.network/home
+- type: Documentation
+  url: https://docs.pyth.network
+- type: APIReference
+  url: https://docs.pyth.network/price-feeds/core/api-reference
+- type: GettingStarted
+  url: https://docs.pyth.network/price-feeds/core/getting-started
+- type: Blog
+  url: https://pyth.network/blog
+- type: GitHubOrganization
+  url: https://github.com/pyth-network
+- type: SignUp
+  url: https://pythdata.app
+- type: TermsOfService
+  url: https://pyth.network/legal/terms-conditions
+- type: PrivacyPolicy
+  url: https://pyth.network/legal/privacy-policy
+- type: StatusPage
+  url: https://status.pyth.network
+- type: Deprecation
+  url: https://docs.pyth.network/price-feeds/changelog
+- type: ChangeLog
+  url: changelog/pyth-changelog.yml
+- type: Authentication
+  url: authentication/pyth-authentication.yml
+- type: Packages
+  url: packages/pyth-packages.yml
+- type: SDKs
+  url: packages/pyth-packages.yml
+- type: MCPServer
+  url: mcp/pyth-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/pyth-llms.txt
+- type: Lifecycle
+  url: lifecycle/pyth-lifecycle.yml
+- type: Conventions
+  url: conventions/pyth-conventions.yml
+- type: Sandbox
+  url: sandbox/pyth-sandbox.yml
+- type: ErrorCatalog
+  url: errors/pyth-problem-types.yml
+- type: Conformance
+  url: conformance/pyth-conformance.yml
+- type: DataModel
+  url: data-model/pyth-data-model.yml
+- type: AgenticAccess
+  url: agentic-access/pyth-agentic-access.yml
+- type: DomainSecurity
+  url: security/pyth-domain-security.yml
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 20
+  pass: local-v1

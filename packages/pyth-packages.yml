@@ -1,0 +1,99 @@
+generated: '2026-07-20'
+method: searched
+source: registry.npmjs.org, pypi.org, github.com/pyth-network, docs.pyth.network/SKILL.md
+packages:
+  - language: javascript
+    registry: npm
+    name: "@pythnetwork/hermes-client"
+    version: 3.1.0
+    url: https://www.npmjs.com/package/@pythnetwork/hermes-client
+    install: npm install @pythnetwork/hermes-client
+    official: true
+    product: Pyth Core
+    notes: TypeScript client for the Hermes price service (getLatestPriceUpdates, streaming).
+  - language: javascript
+    registry: npm
+    name: "@pythnetwork/pyth-evm-js"
+    version: 2.0.0
+    url: https://www.npmjs.com/package/@pythnetwork/pyth-evm-js
+    install: npm install @pythnetwork/pyth-evm-js
+    official: true
+    product: Pyth Core
+  - language: javascript
+    registry: npm
+    name: "@pythnetwork/client"
+    version: 2.22.1
+    url: https://www.npmjs.com/package/@pythnetwork/client
+    install: npm install @pythnetwork/client
+    official: true
+    product: Pyth Core
+    notes: Solana on-chain Pyth account client.
+  - language: javascript
+    registry: npm
+    name: "@pythnetwork/pyth-solana-receiver"
+    version: 0.16.0
+    url: https://www.npmjs.com/package/@pythnetwork/pyth-solana-receiver
+    install: npm install @pythnetwork/pyth-solana-receiver
+    official: true
+    product: Pyth Core
+  - language: javascript
+    registry: npm
+    name: "@pythnetwork/price-service-client"
+    version: 1.11.0
+    url: https://www.npmjs.com/package/@pythnetwork/price-service-client
+    install: npm install @pythnetwork/price-service-client
+    official: true
+    product: Pyth Core
+    notes: Legacy price service client (superseded by hermes-client).
+  - language: solidity
+    registry: npm
+    name: "@pythnetwork/pyth-sdk-solidity"
+    version: 4.3.1
+    url: https://www.npmjs.com/package/@pythnetwork/pyth-sdk-solidity
+    install: npm install @pythnetwork/pyth-sdk-solidity
+    official: true
+    product: Pyth Core
+    notes: IPyth interface + PythStructs + MockPyth for EVM smart contracts.
+  - language: solidity
+    registry: npm
+    name: "@pythnetwork/entropy-sdk-solidity"
+    version: 2.2.1
+    url: https://www.npmjs.com/package/@pythnetwork/entropy-sdk-solidity
+    install: npm install @pythnetwork/entropy-sdk-solidity
+    official: true
+    product: Entropy
+    notes: IEntropyV2 + IEntropyConsumer callback pattern for on-chain randomness.
+  - language: javascript
+    registry: npm
+    name: "@pythnetwork/pyth-lazer-sdk"
+    version: 6.2.4
+    url: https://www.npmjs.com/package/@pythnetwork/pyth-lazer-sdk
+    install: npm install @pythnetwork/pyth-lazer-sdk
+    official: true
+    product: Pyth Pro
+    notes: WebSocket low-latency streaming SDK (Pyth Pro / Lazer).
+  - language: javascript
+    registry: npm
+    name: "@pythnetwork/express-relay-js"
+    version: 0.29.0
+    url: https://www.npmjs.com/package/@pythnetwork/express-relay-js
+    install: npm install @pythnetwork/express-relay-js
+    official: true
+    product: Express Relay
+  - language: python
+    registry: pypi
+    name: pythclient
+    url: https://pypi.org/project/pythclient/
+    install: pip install pythclient
+    official: true
+    product: Pyth Core
+    source_repo: https://github.com/pyth-network/pyth-client-py
+  - language: rust
+    registry: crates.io
+    name: pyth-sdk
+    url: https://crates.io/crates/pyth-sdk
+    install: cargo add pyth-sdk
+    official: true
+    product: Pyth Core
+    source_repo: https://github.com/pyth-network/pyth-sdk-rs
+    notes: Registry HEAD returned 403 to the probe; recorded from the pyth-sdk-rs repo (first-party).

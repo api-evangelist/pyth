@@ -1,0 +1,244 @@
+generated: '2026-07-20'
+method: generated
+source: openapi/pyth-benchmarks-openapi-original.json, openapi/pyth-hermes-openapi-original.json
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 23
+  by_action_class:
+    connected: 23
+  by_consequence:
+    read: 23
+  human_in_the_loop_required: 0
+operations:
+- path: /v1/shims/tradingview/history
+  method: get
+  operationId: tradingview_history_route_v1_shims_tradingview_history_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/shims/tradingview/groups
+  method: get
+  operationId: get_groups_v1_shims_tradingview_groups_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/shims/tradingview/symbol_info
+  method: get
+  operationId: get_symbol_info_v1_shims_tradingview_symbol_info_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/shims/tradingview/symbols
+  method: get
+  operationId: tradingview_symbols_route_v1_shims_tradingview_symbols_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/shims/tradingview/search
+  method: get
+  operationId: tradingview_search_route_v1_shims_tradingview_search_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/shims/tradingview/config
+  method: get
+  operationId: tradingview_config_route_v1_shims_tradingview_config_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/shims/tradingview/streaming
+  method: get
+  operationId: tradingview_streaming_route_v1_shims_tradingview_streaming_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/price_feeds/
+  method: get
+  operationId: price_feeds_route_v1_price_feeds__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/price_feeds/{id}
+  method: get
+  operationId: price_feed_route_v1_price_feeds__id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/price_differences/
+  method: get
+  operationId: price_differences_route_v1_price_differences__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/updates/price/{timestamp}
+  method: get
+  operationId: price_updates_timestamp_route_v1_updates_price__timestamp__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/updates/price/{timestamp}/{interval}
+  method: get
+  operationId: price_updates_interval_route_v1_updates_price__timestamp___interval__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/get_price_feed
+  method: get
+  operationId: get_price_feed
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/get_vaa
+  method: get
+  operationId: get_vaa
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/get_vaa_ccip
+  method: get
+  operationId: get_vaa_ccip
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/latest_price_feeds
+  method: get
+  operationId: latest_price_feeds
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/latest_vaas
+  method: get
+  operationId: latest_vaas
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/price_feed_ids
+  method: get
+  operationId: price_feed_ids
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/price_feeds
+  method: get
+  operationId: price_feeds_metadata
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/updates/price/latest
+  method: get
+  operationId: latest_price_updates
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/updates/price/stream
+  method: get
+  operationId: price_stream_sse_handler
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/updates/price/{publish_time}
+  method: get
+  operationId: timestamp_price_updates
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/updates/publisher_stake_caps/latest
+  method: get
+  operationId: latest_publisher_stake_caps
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none

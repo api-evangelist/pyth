@@ -1,0 +1,22 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Pyth Hermes
+  version: 1.0.0
+extends: openapi/pyth-hermes-openapi-original.json
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-product: Pyth Core
+      x-apievangelist-category: crypto-web3-oracle
+      x-apievangelist-auth-roadmap: >-
+        Public + rate-limited today; Pyth API key required from 2026-08-18. See
+        authentication/pyth-authentication.yml.
+      x-apievangelist-conventions: conventions/pyth-conventions.yml
+  - target: $.info
+    update:
+      x-apievangelist-rating-artifacts:
+        packages: packages/pyth-packages.yml
+        mcp: mcp/pyth-mcp.yml
+        skills: skills/_index.yml
+        lifecycle: lifecycle/pyth-lifecycle.yml
+        errors: errors/pyth-problem-types.yml

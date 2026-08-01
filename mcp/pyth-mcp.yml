@@ -1,0 +1,33 @@
+generated: '2026-07-20'
+method: searched
+status: published
+source: https://docs.pyth.network/price-feeds/pro/mcp
+server:
+  name: pyth
+  transport: http          # Streamable HTTP
+  url: https://mcp.pyth.network/mcp
+  self_hosting: not required (hosted); optional local build via @pythnetwork/mcp in pyth-crosschain
+auth:
+  endpoint_level: none
+  tool_level: Pyth Pro API key passed as `access_token` argument on price tools
+  notes: >-
+    get_symbols and convert_date_to_timestamp need no key. get_latest_price requires
+    access_token; get_historical_price and get_candlestick_data require it as of 2026-07-24.
+recommended_workflow: get_symbols -> get_latest_price / get_historical_price -> get_candlestick_data
+tools:
+  - name: get_symbols
+    description: Find available Pyth Pro feeds by query and asset type (crypto, fx, equity, metal, rates, commodity, funding-rate).
+    auth_required: false
+  - name: get_latest_price
+    description: Fetch latest prices for up to 100 feeds.
+    auth_required: true
+  - name: get_historical_price
+    description: Get point-in-time prices for up to 50 feeds (data from April 2025 onward).
+    auth_required: from 2026-07-24
+  - name: get_candlestick_data
+    description: Return OHLC candles for a single feed (up to 500 per response).
+    auth_required: from 2026-07-24
+  - name: convert_date_to_timestamp
+    description: Utility to convert a date to a Unix timestamp.
+    auth_required: false
+skills_page: https://docs.pyth.network/price-feeds/pro/mcp-skills

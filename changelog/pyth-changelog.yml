@@ -1,0 +1,33 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.pyth.network/price-feeds/changelog
+scheme: dated (daily feed-catalog changelog)
+current_version: rolling
+notes: >-
+  Pyth's public changelog is a daily record of price-feed catalog changes (feeds added / removed /
+  activated) rather than a semver API changelog. Recent window captured below.
+entries:
+  - date: '2026-07-18'
+    breaking: false
+    highlights: Five interest-rate feeds removed; four crude-oil commodity feeds added.
+  - date: '2026-07-17'
+    breaking: false
+    highlights: Cocoa futures and Hologic equity removed; copper + aluminum 3-month metals and a Brazilian equity index added.
+  - date: '2026-07-16'
+    breaking: false
+    highlights: Soybean and corn feeds removed; seven U.S. Treasury bond feeds live; Japanese and Korean equity indices added.
+  - date: '2026-07-15'
+    breaking: false
+    highlights: Four legacy interest-rate/commodity feeds removed; five equity-index and commodity feeds activated.
+  - date: '2026-07-14'
+    breaking: false
+    highlights: 72 changes — 61 crypto feeds removed; 11 new feeds including Brent crude, equity ETFs, and staking derivatives.
+  - date: '2026-07-13'
+    breaking: false
+    highlights: 13 additions — new crypto tokens and metadao protocols.
+  - date: '2026-07-11'
+    breaking: false
+    highlights: One commodity feed removed; 25 new crypto, equity, and NAV feeds activated.
+  - date: '2026-07-10'
+    breaking: false
+    highlights: Platinum commodity live; ten new forex pairs, crypto, and NAV feeds announced.

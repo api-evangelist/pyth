@@ -1,0 +1,40 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/pyth-hermes-openapi-original.json, openapi/pyth-benchmarks-openapi-original.json
+format: http-status
+envelope:
+  hermes: plain HTTP status codes; no structured problem body
+  benchmarks: FastAPI HTTPValidationError / ValidationError (schemas) on 422; TradingViewErrorResponse on shim errors
+problems:
+  - status: 404
+    title: Price feed or update not found
+    scope: hermes
+    source_operations:
+      - openapi/pyth-hermes-openapi-original.json#get_vaa
+      - openapi/pyth-hermes-openapi-original.json#latest_price_updates
+      - openapi/pyth-hermes-openapi-original.json#price_stream_sse_handler
+      - openapi/pyth-hermes-openapi-original.json#timestamp_price_updates
+  - status: 400
+    title: Bad request (invalid price-feed query)
+    scope: benchmarks
+    source_operations:
+      - openapi/pyth-benchmarks-openapi-original.json#price_feeds_route_v1_price_feeds__get
+  - status: 404
+    title: Price feed id not found
+    scope: benchmarks
+    source_operations:
+      - openapi/pyth-benchmarks-openapi-original.json#price_feed_route_v1_price_feeds__id__get
+      - openapi/pyth-benchmarks-openapi-original.json#price_updates_timestamp_route_v1_updates_price__timestamp__get
+  - status: 422
+    title: Validation error
+    detail: FastAPI request validation failure (HTTPValidationError with loc/msg/type detail array)
+    scope: benchmarks
+    source_operations:
+      - openapi/pyth-benchmarks-openapi-original.json#tradingview_history_route_v1_shims_tradingview_history_get
+      - openapi/pyth-benchmarks-openapi-original.json#get_symbol_info_v1_shims_tradingview_symbol_info_get
+      - openapi/pyth-benchmarks-openapi-original.json#tradingview_symbols_route_v1_shims_tradingview_symbols_get
+      - openapi/pyth-benchmarks-openapi-original.json#tradingview_search_route_v1_shims_tradingview_search_get
+      - openapi/pyth-benchmarks-openapi-original.json#price_feeds_route_v1_price_feeds__get
+      - openapi/pyth-benchmarks-openapi-original.json#price_feed_route_v1_price_feeds__id__get
+      - openapi/pyth-benchmarks-openapi-original.json#price_updates_timestamp_route_v1_updates_price__timestamp__get
+      - openapi/pyth-benchmarks-openapi-original.json#price_updates_interval_route_v1_updates_price__timestamp___interval__get

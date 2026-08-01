@@ -1,0 +1,22 @@
+{
+  "provider": "pyth",
+  "sources": [
+    "pyth-price-differences-api-openapi.yml",
+    "pyth-price-feeds-api-openapi.yml",
+    "pyth-rest-api-openapi.yml",
+    "pyth-tradingview-api-openapi.yml",
+    "pyth-updates-api-openapi.yml"
+  ],
+  "outputs": [
+    "pyth-price-differences-api-openapi.yml",
+    "pyth-price-feeds-api-openapi.yml",
+    "pyth-rest-api-openapi.yml",
+    "pyth-tradingview-api-openapi.yml",
+    "pyth-updates-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

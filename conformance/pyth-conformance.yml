@@ -1,0 +1,30 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/pyth-hermes-openapi-original.json, openapi/pyth-benchmarks-openapi-original.json
+standards:
+  - id: openapi-3.0
+    conforms: true
+    evidence: openapi/pyth-hermes-openapi-original.json is OpenAPI 3.0.3
+  - id: openapi-3.1
+    conforms: true
+    evidence: openapi/pyth-benchmarks-openapi-original.json is OpenAPI 3.1.0 (JSON Schema 2020-12)
+  - id: server-sent-events
+    conforms: true
+    evidence: Hermes GET /v2/updates/price/stream is an SSE stream
+  - id: oauth2
+    conforms: false
+  - id: openid-connect
+    conforms: false
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: errors use plain HTTP status / FastAPI HTTPValidationError, not application/problem+json
+  - id: fhir-r4
+    conforms: false
+  - id: fapi
+    conforms: false
+  - id: scim2
+    conforms: false
+notes: >-
+  No published third-party compliance certifications (SOC 2 / ISO 27001 / PCI / HIPAA) were found
+  on the Pyth security or trust surface; therefore no `Compliance` pointer is emitted. Pyth is a
+  decentralized oracle; security assurance is via the public audit-reports repo (github.com/pyth-network/audit-reports).

@@ -1,0 +1,17 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Pyth Benchmarks
+  version: 1.0.0
+extends: openapi/pyth-benchmarks-openapi-original.json
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-product: Pyth Benchmarks
+      x-apievangelist-category: crypto-web3-oracle
+      x-apievangelist-description: >-
+        Historical price data and TradingView charting-library shims for Pyth price feeds.
+      x-apievangelist-conventions: conventions/pyth-conventions.yml
+  - target: $.servers
+    update:
+      - url: https://benchmarks.pyth.network
+        description: Production Benchmarks host (the original spec ships an empty servers[] array).

@@ -1,0 +1,28 @@
+generated: '2026-07-20'
+method: searched
+source: docs.pyth.network/SKILL.md, docs.pyth.network/price-feeds
+test_environments:
+  - name: Hermes beta
+    type: testnet price service
+    url: https://hermes-beta.pyth.network
+    description: Testnet Hermes endpoint mirroring the public API for integration tests.
+  - name: MockPyth
+    type: local mock contract
+    source: "@pythnetwork/pyth-sdk-solidity/MockPyth.sol"
+    description: >-
+      Solidity mock of the Pyth contract for unit tests — inject known price values and generate
+      deterministic updateData without a live network.
+  - name: Fortuna testnet
+    type: Entropy testnet
+    description: Testnet environment for Entropy (on-chain randomness) integration tests.
+recommended_testing:
+  - Hardhat mainnet fork pinned to a block with the real Pyth contract for integration tests.
+  - Generate mock updateData with known prices for deterministic unit tests.
+sample_feed_ids:
+  BTC/USD: "0xe62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43"
+  ETH/USD: "0xff61491a931112ddf1bd8147cd1b641375f79f5825126d665480874634fd0ace"
+  SOL/USD: "0xef0d8b6fda2ceba41da15d4095d1da392a0d2f8ed0c6c7bc0f4cfac8c280b56d"
+  USDC/USD: "0xeaa020c61cc479712813461ce153894a96a6c00b21ed0cfc2798d1f9a9e9c94a"
+notes: >-
+  Values above are published verbatim in the Pyth developer skill; they are canonical mainnet
+  feed identifiers, not secrets. No test API keys are published.

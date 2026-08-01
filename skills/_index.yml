@@ -1,0 +1,13 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.pyth.network/SKILL.md
+skills:
+  - file: pyth-dev.md
+    name: pyth-dev
+    description: >-
+      End-to-end Pyth Network oracle integration playbook, published by Pyth. Pull-based
+      oracle model (update-before-read), staleness thresholds, confidence intervals, fee
+      payment, Hermes API integration, Entropy randomness, and chain-specific deployments.
+    api: openapi/pyth-hermes-openapi-original.json
+    products: [Pyth Core, Pyth Pro, Entropy, Express Relay]
+    published_by_provider: true

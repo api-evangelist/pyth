@@ -1,0 +1,28 @@
+generated: '2026-07-20'
+method: searched
+source: live probes of /.well-known/* and /llms.txt on Pyth hosts
+note: >-
+  No /.well-known/ discovery documents are published on any Pyth host. docs.pyth.network/llms.txt
+  is present and captured verbatim at llms/pyth-llms.txt (indexed here for completeness).
+hosts:
+  - host: https://pyth.network
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+      - {path: /llms.txt, status: 404}
+  - host: https://docs.pyth.network
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /llms.txt, status: 200, file: ../llms/pyth-llms.txt}
+  - host: https://hermes.pyth.network
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+  - host: https://benchmarks.pyth.network
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}

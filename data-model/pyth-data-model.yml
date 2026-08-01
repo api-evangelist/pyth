@@ -1,0 +1,41 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/pyth-hermes-openapi-original.json, openapi/pyth-benchmarks-openapi-original.json
+entities:
+  - name: PriceFeed
+    id: price feed id (32-byte hex, e.g. 0xe62df6...415b43)
+    description: A market data feed identified by a stable hex id, with metadata (symbol, asset_type).
+    schemas: [RpcPriceFeed, PriceFeedMetadata, RpcPriceFeedMetadataV2, PriceFeed, Metadata]
+  - name: Price
+    description: A signed price observation — price (int64), conf (uint64), expo (int32), publish_time.
+    schemas: [RpcPrice, Price, ParsedData]
+    formula: actual_value = price * 10^expo
+  - name: PriceUpdate
+    description: A verifiable price update (parsed + binary/VAA payload) fetched from Hermes and submitted on-chain.
+    schemas: [PriceUpdate, ParsedPriceUpdate, BinaryUpdate, GetVaaResponse]
+  - name: PublisherStakeCap
+    description: Per-publisher stake cap parameters for the oracle integrity staking program.
+    schemas: [ParsedPublisherStakeCap, ParsedPublisherStakeCapsUpdate]
+  - name: PriceDifference
+    description: Computed difference between price feeds (Benchmarks).
+    schemas: [PriceDifference, PriceDifferencesResponse]
+  - name: TradingViewSymbol
+    description: TradingView charting-library symbol/config/history objects (Benchmarks shim).
+    schemas: [TradingViewSymbolInfoResponse, TradingViewHistoryResponse, TradingViewGroup]
+relationships:
+  - from: PriceUpdate
+    to: PriceFeed
+    type: belongs_to
+    via: id (price feed id)
+  - from: PriceFeed
+    to: Price
+    type: has_one
+    via: price (latest)
+  - from: PriceUpdate
+    to: Price
+    type: has_one
+    via: price / ema_price (parsed)
+  - from: PriceDifference
+    to: PriceFeed
+    type: belongs_to
+    via: pair of price feed ids

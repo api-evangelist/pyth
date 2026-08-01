@@ -1,0 +1,30 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.pyth.network/price-feeds/pro/acquire-api-key, docs.pyth.network/SKILL.md
+docs: https://docs.pyth.network/price-feeds/pro/acquire-api-key
+summary:
+  types: [none, http]
+  http_schemes: [bearer]
+  note: >-
+    Read APIs are historically public. Pyth Pro (Lazer) and the MCP/history endpoints use a
+    Bearer API key. The Hermes public price API is scheduled to require a Pyth API key from
+    2026-08-18.
+schemes:
+  - name: HermesPublic
+    type: none
+    applies_to: openapi/pyth-hermes-openapi-original.json
+    description: >-
+      Hermes REST/SSE endpoints are currently public (rate-limited, no auth in the OpenAPI).
+      An API key becomes required 2026-08-18 (see lifecycle/pyth-lifecycle.yml).
+  - name: BenchmarksPublic
+    type: none
+    applies_to: openapi/pyth-benchmarks-openapi-original.json
+    description: Benchmarks (historical / TradingView shim) endpoints are public; no securityScheme declared.
+  - name: PythProBearer
+    type: http
+    scheme: bearer
+    applies_to: Pyth Pro (Lazer) WebSocket + authenticated HTTP (History/REST) + MCP price tools
+    description: >-
+      API key issued from the Pyth Terminal (https://pythdata.app -> View your API key), passed as
+      `Authorization: Bearer {key}`. In the MCP server it is passed as the `access_token` argument.
+      Provider guidance: never embed the key in browser/frontend apps — proxy through your backend.
