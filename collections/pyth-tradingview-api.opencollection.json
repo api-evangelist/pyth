@@ -1,0 +1,163 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Benchmarks Price Differences TradingView API",
+    "version": "0.3.6"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "TradingView",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "History",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/shims/tradingview/history",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query",
+                "description": "Symbol name or ticker. This is case-insensitive."
+              },
+              {
+                "name": "resolution",
+                "value": "",
+                "type": "query",
+                "description": "Symbol resolution. Possible resolutions are 1, 2, 5, 15, 30, 60, 120, 240, 360, 720, D, 1D, W, 1W, M, 1M. D, W, M are aliases for 1D, 1W, 1M correspondingly. D and 1D mean the same and equal to 1 day. 1W means 1 week. 1M means 1 month."
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Unix timestamp (UTC) of the leftmost required bar, including from."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "Unix timestamp (UTC) of the rightmost required bar, including to. It can be in the future. In this case, the rightmost required bar is the latest available bar."
+              }
+            ]
+          },
+          "docs": "Request for history bars. Each property of the response object is treated as a table column. \n\nData follows these requirements:\n\n- real-time data obtained from the API streaming endpoint must match the historical data, obtained from the /history API. The allowed count of mismatched bars (candles) must not exceed 5% for frequently traded symbols, otherwise the integration to TradingView is not possible;\n- the data must not include unreasonable price gaps, historical data gaps on 1-minute and Dail"
+        },
+        {
+          "info": {
+            "name": "Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/shims/tradingview/groups"
+          },
+          "docs": "Groups"
+        },
+        {
+          "info": {
+            "name": "Symbol Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/shims/tradingview/symbol_info",
+            "params": [
+              {
+                "name": "group",
+                "value": "",
+                "type": "query",
+                "description": "ID of a symbol group. If it is present then only symbols that belong to this group should be returned. Possible values are provided by the /groups endpoint."
+              }
+            ]
+          },
+          "docs": "Get a list of all instruments."
+        },
+        {
+          "info": {
+            "name": "Symbol Resolution",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/shims/tradingview/symbols",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query",
+                "description": "Symbol name or ticker."
+              }
+            ]
+          },
+          "docs": "Request for symbol resolution data."
+        },
+        {
+          "info": {
+            "name": "Symbol Search",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/shims/tradingview/search",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Text typed by the user in the Symbol Search edit box."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of the requested symbol. If no type is provided, all types should be returned."
+              },
+              {
+                "name": "exchange",
+                "value": "",
+                "type": "query",
+                "description": "Exchange name of the requested symbol. Default value is PYTH."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of symbols in a response. Default value is 15."
+              }
+            ]
+          },
+          "docs": "Request for symbol search data."
+        },
+        {
+          "info": {
+            "name": "Data Feed Configuration Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/shims/tradingview/config"
+          },
+          "docs": "Request for config data."
+        },
+        {
+          "info": {
+            "name": "Streaming",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/shims/tradingview/streaming"
+          },
+          "docs": "Request for streaming data. `f` is always \"t\" and `s` is always 0."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,106 @@
+{
+  "item": [
+    {
+      "id": "237db037-88e9-428e-ad40-598e2a789bdb",
+      "name": "Price Differences",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d9dc2a93-04a7-429d-abe2-ae83087df9ab",
+          "name": "Price Differences",
+          "request": {
+            "name": "Price Differences",
+            "description": {
+              "content": "Returns an array of objects with hourly, daily, and weekly close price difference per symbol as well as close prices for each hour for the past 7 days for charting sparklines. There is no rounding to a specific time of day, so the weekly close price difference is relative to 1 week ago at the current time.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "price_differences",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "eba88be7-9602-4512-b184-a9fc18407477",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "price_differences",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"symbol\": \"Crypto.BTC/USD\",\n    \"hour_price_diff_decimal\": -0.0012,\n    \"day_price_diff_decimal\": 0.0234,\n    \"week_price_diff_decimal\": 0.0567,\n    \"sparkline\": [\n      42000.5,\n      42100.3,\n      42050.7,\n      42200.1,\n      42150.9\n    ]\n  },\n  {\n    \"symbol\": \"Crypto.ETH/USD\",\n    \"hour_price_diff_decimal\": 0.0045,\n    \"day_price_diff_decimal\": -0.0123,\n    \"sparkline\": [\n      2800.5,\n      2810.3,\n      2805.7,\n      2820.1,\n      2815.9\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "df2f8c06-7e36-475c-8c2b-4ad642662b88",
+    "name": "Benchmarks Price Differences API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

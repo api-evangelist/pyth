@@ -1,0 +1,1454 @@
+{
+  "item": [
+    {
+      "id": "b2264d7c-8f16-48e0-b107-c1548d07bf9d",
+      "name": "rest",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e0bfed45-defa-4ac6-98fb-5df3a2e0f031",
+          "name": "**Deprecated: use /v2/updates/price/{publish_time} instead**",
+          "request": {
+            "name": "**Deprecated: use /v2/updates/price/{publish_time} instead**",
+            "description": {
+              "content": "**Deprecated: use /v2/updates/price/{publish_time} instead**\n\nGet a price update for a price feed with a specific timestamp\n\nGiven a price feed id and timestamp, retrieve the Pyth price update closest to that timestamp.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "get_price_feed"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "(Required) The id of the price feed to get an update for."
+                },
+                {
+                  "disabled": false,
+                  "key": "publish_time",
+                  "value": "<long>",
+                  "description": "(Required) The unix timestamp in seconds. This endpoint will return the first update whose\npublish_time is >= the provided value."
+                },
+                {
+                  "disabled": false,
+                  "key": "verbose",
+                  "value": "<boolean>",
+                  "description": "If true, include the `metadata` field in the response with additional metadata about the\nprice update."
+                },
+                {
+                  "disabled": false,
+                  "key": "binary",
+                  "value": "<boolean>",
+                  "description": "If true, include the binary price update in the `vaa` field of each returned feed. This\nbinary data can be submitted to Pyth contracts to update the on-chain price."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "eb060e30-8ba5-4377-af0e-628314251c38",
+              "name": "Price update retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "get_price_feed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43"
+                    },
+                    {
+                      "key": "publish_time",
+                      "value": "1717632000"
+                    },
+                    {
+                      "key": "verbose",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "binary",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43\",\n  \"price\": {\n    \"price\": \"2920679499999\",\n    \"conf\": \"509500001\",\n    \"expo\": -8,\n    \"publish_time\": 1717632000\n  },\n  \"ema_price\": {\n    \"price\": \"2920679499999\",\n    \"conf\": \"509500001\",\n    \"expo\": -8,\n    \"publish_time\": 1717632000\n  },\n  \"metadata\": {\n    \"emitter_chain\": 26,\n    \"prev_publish_time\": 1717632000,\n    \"price_service_receive_time\": 1717632000,\n    \"slot\": 85480034\n  },\n  \"vaa\": \"UE5BVQEAAAADuAEAAAADDQC1H7meY5fTed0FsykIb8dt+7nKpbuzfvU2DplDi+dcUl8MC+UIkS65+rkiq+zmNBxE2gaxkBkjdIicZ/fBo+X7AAEqp+WtlWb84np8jJfLpuQ2W+l5KXTigsdAhz5DyVgU3xs+EnaIZxBwcE7EKzjMam+V9rlRy0CGsiQ1kjqqLzfAAQLsoVO0Vu5gVmgc8XGQ7xYhoz36rsBgMjG+e3l/B01esQi/KzPuBf/Ar8Sg5aSEOvEU0muSDb+KIr6d8eEC+FtcAAPZEaBSt4ysXVL84LUcJemQD3SiG30kOfUpF8o7/wI2M2Jf/LyCsbKEQUyLtLbZqnJBSfZJR5AMsrnHDqngMLEGAAY4UDG9GCpRuPvg8hOlsrXuPP3zq7yVPqyG0SG+bNo8rEhP5b1vXlHdG4bZsutX47d5VZ6xnFROKudx3T3/fnWUAQgAU1+kUFc3e0ZZeX1dLRVEryNIVyxMQIcxWwdey+jlIAYowHRM0fJX3Scs80OnT/CERwh5LMlFyU1w578NqxW+AQl2E/9fxjgUTi8crOfDpwsUsmOWw0+Q5OUGhELv/2UZoHAjsaw9OinWUggKACo4SdpPlHYldoWF+J2yGWOW+F4iAQre4c+ocb6a9uSWOnTldFkioqhd9lhmV542+VonCvuy4Tu214NP+2UNd/4Kk3KJCf3iziQJrCBeLi1cLHdLUikgAQtvRFR/nepcF9legl+DywAkUHi5/1MNjlEQvlHyh2XbMiS85yu7/9LgM6Sr+0ukfZY5mSkOcvUkpHn+T+Nw/IrQAQ7lty5luvKUmBpI3ITxSmojJ1aJ0kj/dc0ZcQk+/qo0l0l3/eRLkYjw5j+MZKA8jEubrHzUCke98eSoj8l08+PGAA+DAKNtCwNZe4p6J1Ucod8Lo5RKFfA84CPLVyEzEPQFZ25U9grUK6ilF4GhEia/ndYXLBt3PGW3qa6CBBPM7rH3ABGAyYEtUwzB4CeVedA5o6cKpjRkIebqDNSOqltsr+w7kXdfFVtsK2FMGFZNt5rbpIR+ppztoJ6eOKHmKmi9nQ99ARKkTxRErOs9wJXNHaAuIRV38o1pxRrlQRzGsRuKBqxcQEpC8OPFpyKYcp6iD5l7cO/gRDTamLFyhiUBwKKMP07FAWTEJv8AAAAAABrhAfrtrFhR4yubI7X5QRqMK6xKrj7U3XuBHdGnLqSqcQAAAAAAGp0GAUFVV1YAAAAAAAUYUmIAACcQBsfKUtr4PgZbIXRxRESU79PjE4IBAFUA5i32yLSoX+GmfbRNwS3l2zMPesZrctxliv7fD0pBW0MAAAKqqMJFwAAAAAAqE/NX////+AAAAABkxCb7AAAAAGTEJvoAAAKqIcWxYAAAAAAlR5m4CP/mPsh1IezjYpDlJ4GRb5q4fTs2LjtyO6M0XgVimrIQ4kSh1qg7JKW4gbGkyRntVFR9JO/GNd3FPDit0BK6M+JzXh/h12YNCz9wxlZTvXrNtWNbzqT+91pvl5cphhSPMfAHyEzTPaGR9tKDy9KNu56pmhaY32d2vfEWQmKo22guegeR98oDxs67MmnUraco46a3zEnac2Bm80pasUgMO24=\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8544bc9b-8087-4349-b453-64243caa734c",
+          "name": "**Deprecated: use /v2/updates/price/{publish_time} instead**",
+          "request": {
+            "name": "**Deprecated: use /v2/updates/price/{publish_time} instead**",
+            "description": {
+              "content": "**Deprecated: use /v2/updates/price/{publish_time} instead**\n\nGet a VAA for a price feed with a specific timestamp\n\nGiven a price feed id and timestamp, retrieve the Pyth price update closest to that timestamp.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "get_vaa"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "(Required) The ID of the price feed to get an update for."
+                },
+                {
+                  "disabled": false,
+                  "key": "publish_time",
+                  "value": "<long>",
+                  "description": "(Required) The unix timestamp in seconds. This endpoint will return the first update whose\npublish_time is >= the provided value."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5b18d3dc-7656-4d99-abb3-a99904ce6660",
+              "name": "Price update retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "get_vaa"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43"
+                    },
+                    {
+                      "key": "publish_time",
+                      "value": "1690576641"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"vaa\": \"UE5BVQEAAAADuAEAAAADDQC1H7meY5fTed0FsykIb8dt+7nKpbuzfvU2DplDi+dcUl8MC+UIkS65+rkiq+zmNBxE2gaxkBkjdIicZ/fBo+X7AAEqp+WtlWb84np8jJfLpuQ2W+l5KXTigsdAhz5DyVgU3xs+EnaIZxBwcE7EKzjMam+V9rlRy0CGsiQ1kjqqLzfAAQLsoVO0Vu5gVmgc8XGQ7xYhoz36rsBgMjG+e3l/B01esQi/KzPuBf/Ar8Sg5aSEOvEU0muSDb+KIr6d8eEC+FtcAAPZEaBSt4ysXVL84LUcJemQD3SiG30kOfUpF8o7/wI2M2Jf/LyCsbKEQUyLtLbZqnJBSfZJR5AMsrnHDqngMLEGAAY4UDG9GCpRuPvg8hOlsrXuPP3zq7yVPqyG0SG+bNo8rEhP5b1vXlHdG4bZsutX47d5VZ6xnFROKudx3T3/fnWUAQgAU1+kUFc3e0ZZeX1dLRVEryNIVyxMQIcxWwdey+jlIAYowHRM0fJX3Scs80OnT/CERwh5LMlFyU1w578NqxW+AQl2E/9fxjgUTi8crOfDpwsUsmOWw0+Q5OUGhELv/2UZoHAjsaw9OinWUggKACo4SdpPlHYldoWF+J2yGWOW+F4iAQre4c+ocb6a9uSWOnTldFkioqhd9lhmV542+VonCvuy4Tu214NP+2UNd/4Kk3KJCf3iziQJrCBeLi1cLHdLUikgAQtvRFR/nepcF9legl+DywAkUHi5/1MNjlEQvlHyh2XbMiS85yu7/9LgM6Sr+0ukfZY5mSkOcvUkpHn+T+Nw/IrQAQ7lty5luvKUmBpI3ITxSmojJ1aJ0kj/dc0ZcQk+/qo0l0l3/eRLkYjw5j+MZKA8jEubrHzUCke98eSoj8l08+PGAA+DAKNtCwNZe4p6J1Ucod8Lo5RKFfA84CPLVyEzEPQFZ25U9grUK6ilF4GhEia/ndYXLBt3PGW3qa6CBBPM7rH3ABGAyYEtUwzB4CeVedA5o6cKpjRkIebqDNSOqltsr+w7kXdfFVtsK2FMGFZNt5rbpIR+ppztoJ6eOKHmKmi9nQ99ARKkTxRErOs9wJXNHaAuIRV38o1pxRrlQRzGsRuKBqxcQEpC8OPFpyKYcp6iD5l7cO/gRDTamLFyhiUBwKKMP07FAWTEJv8AAAAAABrhAfrtrFhR4yubI7X5QRqMK6xKrj7U3XuBHdGnLqSqcQAAAAAAGp0GAUFVV1YAAAAAAAUYUmIAACcQBsfKUtr4PgZbIXRxRESU79PjE4IBAFUA5i32yLSoX+GmfbRNwS3l2zMPesZrctxliv7fD0pBW0MAAAKqqMJFwAAAAAAqE/NX////+AAAAABkxCb7AAAAAGTEJvoAAAKqIcWxYAAAAAAlR5m4CP/mPsh1IezjYpDlJ4GRb5q4fTs2LjtyO6M0XgVimrIQ4kSh1qg7JKW4gbGkyRntVFR9JO/GNd3FPDit0BK6M+JzXh/h12YNCz9wxlZTvXrNtWNbzqT+91pvl5cphhSPMfAHyEzTPaGR9tKDy9KNu56pmhaY32d2vfEWQmKo22guegeR98oDxs67MmnUraco46a3zEnac2Bm80pasUgMO24=\",\n  \"publishTime\": 1690576641\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8b3ee333-0f76-4efe-b735-3241878fa24c",
+              "name": "Price update not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "get_vaa"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43"
+                    },
+                    {
+                      "key": "publish_time",
+                      "value": "1690576641"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2f8a4236-3a83-4bcc-a086-7cb2af2db055",
+          "name": "**Deprecated: use /v2/updates/price/{publish_time} instead**",
+          "request": {
+            "name": "**Deprecated: use /v2/updates/price/{publish_time} instead**",
+            "description": {
+              "content": "**Deprecated: use /v2/updates/price/{publish_time} instead**\n\nGet a VAA for a price feed using CCIP\n\nThis endpoint accepts a single argument which is a hex-encoded byte string of the following form:\n`<price feed id (32 bytes> <publish time as unix timestamp (8 bytes, big endian)>`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "get_vaa_ccip"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "data",
+                  "value": "<binary>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f43ce34c-c0ee-474c-b692-ab0f91f9ef3b",
+              "name": "Price update retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "get_vaa_ccip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "data",
+                      "value": "string"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "28f9d13c-f36c-48fc-824b-7a6b233ea6d2",
+          "name": "**Deprecated: use /v2/updates/price/latest instead**",
+          "request": {
+            "name": "**Deprecated: use /v2/updates/price/latest instead**",
+            "description": {
+              "content": "**Deprecated: use /v2/updates/price/latest instead**\n\nGet the latest price updates by price feed id.\n\nGiven a collection of price feed ids, retrieve the latest Pyth price for each price feed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "latest_price_feeds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ids[]",
+                  "value": "<string>",
+                  "description": "(Required) Get the most recent price update for this set of price feed ids.\n\nThis parameter can be provided multiple times to retrieve multiple price updates,\nfor example see the following query string:\n\n```\n?ids[]=a12...&ids[]=b4c...\n```"
+                },
+                {
+                  "disabled": false,
+                  "key": "ids[]",
+                  "value": "<string>",
+                  "description": "(Required) Get the most recent price update for this set of price feed ids.\n\nThis parameter can be provided multiple times to retrieve multiple price updates,\nfor example see the following query string:\n\n```\n?ids[]=a12...&ids[]=b4c...\n```"
+                },
+                {
+                  "disabled": false,
+                  "key": "verbose",
+                  "value": "<boolean>",
+                  "description": "If true, include the `metadata` field in the response with additional metadata about\nthe price update."
+                },
+                {
+                  "disabled": false,
+                  "key": "binary",
+                  "value": "<boolean>",
+                  "description": "If true, include the binary price update in the `vaa` field of each returned feed.\nThis binary data can be submitted to Pyth contracts to update the on-chain price."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2f5b982e-e739-4c27-8944-92a160e2036b",
+              "name": "Price updates retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "latest_price_feeds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids[]",
+                      "value": "e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43"
+                    },
+                    {
+                      "key": "ids[]",
+                      "value": "e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43"
+                    },
+                    {
+                      "key": "verbose",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "binary",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43\",\n    \"price\": {\n      \"price\": \"2920679499999\",\n      \"conf\": \"509500001\",\n      \"expo\": -8,\n      \"publish_time\": 1717632000\n    },\n    \"ema_price\": {\n      \"price\": \"2920679499999\",\n      \"conf\": \"509500001\",\n      \"expo\": -8,\n      \"publish_time\": 1717632000\n    },\n    \"metadata\": {\n      \"emitter_chain\": 26,\n      \"prev_publish_time\": 1717632000,\n      \"price_service_receive_time\": 1717632000,\n      \"slot\": 85480034\n    },\n    \"vaa\": \"UE5BVQEAAAADuAEAAAADDQC1H7meY5fTed0FsykIb8dt+7nKpbuzfvU2DplDi+dcUl8MC+UIkS65+rkiq+zmNBxE2gaxkBkjdIicZ/fBo+X7AAEqp+WtlWb84np8jJfLpuQ2W+l5KXTigsdAhz5DyVgU3xs+EnaIZxBwcE7EKzjMam+V9rlRy0CGsiQ1kjqqLzfAAQLsoVO0Vu5gVmgc8XGQ7xYhoz36rsBgMjG+e3l/B01esQi/KzPuBf/Ar8Sg5aSEOvEU0muSDb+KIr6d8eEC+FtcAAPZEaBSt4ysXVL84LUcJemQD3SiG30kOfUpF8o7/wI2M2Jf/LyCsbKEQUyLtLbZqnJBSfZJR5AMsrnHDqngMLEGAAY4UDG9GCpRuPvg8hOlsrXuPP3zq7yVPqyG0SG+bNo8rEhP5b1vXlHdG4bZsutX47d5VZ6xnFROKudx3T3/fnWUAQgAU1+kUFc3e0ZZeX1dLRVEryNIVyxMQIcxWwdey+jlIAYowHRM0fJX3Scs80OnT/CERwh5LMlFyU1w578NqxW+AQl2E/9fxjgUTi8crOfDpwsUsmOWw0+Q5OUGhELv/2UZoHAjsaw9OinWUggKACo4SdpPlHYldoWF+J2yGWOW+F4iAQre4c+ocb6a9uSWOnTldFkioqhd9lhmV542+VonCvuy4Tu214NP+2UNd/4Kk3KJCf3iziQJrCBeLi1cLHdLUikgAQtvRFR/nepcF9legl+DywAkUHi5/1MNjlEQvlHyh2XbMiS85yu7/9LgM6Sr+0ukfZY5mSkOcvUkpHn+T+Nw/IrQAQ7lty5luvKUmBpI3ITxSmojJ1aJ0kj/dc0ZcQk+/qo0l0l3/eRLkYjw5j+MZKA8jEubrHzUCke98eSoj8l08+PGAA+DAKNtCwNZe4p6J1Ucod8Lo5RKFfA84CPLVyEzEPQFZ25U9grUK6ilF4GhEia/ndYXLBt3PGW3qa6CBBPM7rH3ABGAyYEtUwzB4CeVedA5o6cKpjRkIebqDNSOqltsr+w7kXdfFVtsK2FMGFZNt5rbpIR+ppztoJ6eOKHmKmi9nQ99ARKkTxRErOs9wJXNHaAuIRV38o1pxRrlQRzGsRuKBqxcQEpC8OPFpyKYcp6iD5l7cO/gRDTamLFyhiUBwKKMP07FAWTEJv8AAAAAABrhAfrtrFhR4yubI7X5QRqMK6xKrj7U3XuBHdGnLqSqcQAAAAAAGp0GAUFVV1YAAAAAAAUYUmIAACcQBsfKUtr4PgZbIXRxRESU79PjE4IBAFUA5i32yLSoX+GmfbRNwS3l2zMPesZrctxliv7fD0pBW0MAAAKqqMJFwAAAAAAqE/NX////+AAAAABkxCb7AAAAAGTEJvoAAAKqIcWxYAAAAAAlR5m4CP/mPsh1IezjYpDlJ4GRb5q4fTs2LjtyO6M0XgVimrIQ4kSh1qg7JKW4gbGkyRntVFR9JO/GNd3FPDit0BK6M+JzXh/h12YNCz9wxlZTvXrNtWNbzqT+91pvl5cphhSPMfAHyEzTPaGR9tKDy9KNu56pmhaY32d2vfEWQmKo22guegeR98oDxs67MmnUraco46a3zEnac2Bm80pasUgMO24=\"\n  },\n  {\n    \"id\": \"e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43\",\n    \"price\": {\n      \"price\": \"2920679499999\",\n      \"conf\": \"509500001\",\n      \"expo\": -8,\n      \"publish_time\": 1717632000\n    },\n    \"ema_price\": {\n      \"price\": \"2920679499999\",\n      \"conf\": \"509500001\",\n      \"expo\": -8,\n      \"publish_time\": 1717632000\n    },\n    \"metadata\": {\n      \"emitter_chain\": 26,\n      \"prev_publish_time\": 1717632000,\n      \"price_service_receive_time\": 1717632000,\n      \"slot\": 85480034\n    },\n    \"vaa\": \"UE5BVQEAAAADuAEAAAADDQC1H7meY5fTed0FsykIb8dt+7nKpbuzfvU2DplDi+dcUl8MC+UIkS65+rkiq+zmNBxE2gaxkBkjdIicZ/fBo+X7AAEqp+WtlWb84np8jJfLpuQ2W+l5KXTigsdAhz5DyVgU3xs+EnaIZxBwcE7EKzjMam+V9rlRy0CGsiQ1kjqqLzfAAQLsoVO0Vu5gVmgc8XGQ7xYhoz36rsBgMjG+e3l/B01esQi/KzPuBf/Ar8Sg5aSEOvEU0muSDb+KIr6d8eEC+FtcAAPZEaBSt4ysXVL84LUcJemQD3SiG30kOfUpF8o7/wI2M2Jf/LyCsbKEQUyLtLbZqnJBSfZJR5AMsrnHDqngMLEGAAY4UDG9GCpRuPvg8hOlsrXuPP3zq7yVPqyG0SG+bNo8rEhP5b1vXlHdG4bZsutX47d5VZ6xnFROKudx3T3/fnWUAQgAU1+kUFc3e0ZZeX1dLRVEryNIVyxMQIcxWwdey+jlIAYowHRM0fJX3Scs80OnT/CERwh5LMlFyU1w578NqxW+AQl2E/9fxjgUTi8crOfDpwsUsmOWw0+Q5OUGhELv/2UZoHAjsaw9OinWUggKACo4SdpPlHYldoWF+J2yGWOW+F4iAQre4c+ocb6a9uSWOnTldFkioqhd9lhmV542+VonCvuy4Tu214NP+2UNd/4Kk3KJCf3iziQJrCBeLi1cLHdLUikgAQtvRFR/nepcF9legl+DywAkUHi5/1MNjlEQvlHyh2XbMiS85yu7/9LgM6Sr+0ukfZY5mSkOcvUkpHn+T+Nw/IrQAQ7lty5luvKUmBpI3ITxSmojJ1aJ0kj/dc0ZcQk+/qo0l0l3/eRLkYjw5j+MZKA8jEubrHzUCke98eSoj8l08+PGAA+DAKNtCwNZe4p6J1Ucod8Lo5RKFfA84CPLVyEzEPQFZ25U9grUK6ilF4GhEia/ndYXLBt3PGW3qa6CBBPM7rH3ABGAyYEtUwzB4CeVedA5o6cKpjRkIebqDNSOqltsr+w7kXdfFVtsK2FMGFZNt5rbpIR+ppztoJ6eOKHmKmi9nQ99ARKkTxRErOs9wJXNHaAuIRV38o1pxRrlQRzGsRuKBqxcQEpC8OPFpyKYcp6iD5l7cO/gRDTamLFyhiUBwKKMP07FAWTEJv8AAAAAABrhAfrtrFhR4yubI7X5QRqMK6xKrj7U3XuBHdGnLqSqcQAAAAAAGp0GAUFVV1YAAAAAAAUYUmIAACcQBsfKUtr4PgZbIXRxRESU79PjE4IBAFUA5i32yLSoX+GmfbRNwS3l2zMPesZrctxliv7fD0pBW0MAAAKqqMJFwAAAAAAqE/NX////+AAAAABkxCb7AAAAAGTEJvoAAAKqIcWxYAAAAAAlR5m4CP/mPsh1IezjYpDlJ4GRb5q4fTs2LjtyO6M0XgVimrIQ4kSh1qg7JKW4gbGkyRntVFR9JO/GNd3FPDit0BK6M+JzXh/h12YNCz9wxlZTvXrNtWNbzqT+91pvl5cphhSPMfAHyEzTPaGR9tKDy9KNu56pmhaY32d2vfEWQmKo22guegeR98oDxs67MmnUraco46a3zEnac2Bm80pasUgMO24=\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e937c7d8-b61f-4e0d-ab6f-265367289451",
+          "name": "**Deprecated: use /v2/updates/price/latest instead**",
+          "request": {
+            "name": "**Deprecated: use /v2/updates/price/latest instead**",
+            "description": {
+              "content": "**Deprecated: use /v2/updates/price/latest instead**\n\nGet VAAs for a set of price feed ids.\n\nGiven a collection of price feed ids, retrieve the latest VAA for each. The returned VAA(s) can\nbe submitted to the Pyth contract to update the on-chain price. If VAAs are not found for every\nprovided price ID the call will fail.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "latest_vaas"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ids[]",
+                  "value": "<string>",
+                  "description": "(Required) Get the VAAs for this set of price feed ids.\n\nThis parameter can be provided multiple times to retrieve multiple price updates,\nfor example see the following query string:\n\n```\n?ids[]=a12...&ids[]=b4c...\n```"
+                },
+                {
+                  "disabled": false,
+                  "key": "ids[]",
+                  "value": "<string>",
+                  "description": "(Required) Get the VAAs for this set of price feed ids.\n\nThis parameter can be provided multiple times to retrieve multiple price updates,\nfor example see the following query string:\n\n```\n?ids[]=a12...&ids[]=b4c...\n```"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "23d1c888-cc0d-490d-9f1d-b56bb1c92093",
+              "name": "VAAs retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "latest_vaas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids[]",
+                      "value": "e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43"
+                    },
+                    {
+                      "key": "ids[]",
+                      "value": "e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"UE5BVQEAAAADuAEAAAADDQC1H7meY5fTed0FsykIb8dt+7nKpbuzfvU2DplDi+dcUl8MC+UIkS65+rkiq+zmNBxE2gaxkBkjdIicZ/fBo+X7AAEqp+WtlWb84np8jJfLpuQ2W+l5KXTigsdAhz5DyVgU3xs+EnaIZxBwcE7EKzjMam+V9rlRy0CGsiQ1kjqqLzfAAQLsoVO0Vu5gVmgc8XGQ7xYhoz36rsBgMjG+e3l/B01esQi/KzPuBf/Ar8Sg5aSEOvEU0muSDb+KIr6d8eEC+FtcAAPZEaBSt4ysXVL84LUcJemQD3SiG30kOfUpF8o7/wI2M2Jf/LyCsbKEQUyLtLbZqnJBSfZJR5AMsrnHDqngMLEGAAY4UDG9GCpRuPvg8hOlsrXuPP3zq7yVPqyG0SG+bNo8rEhP5b1vXlHdG4bZsutX47d5VZ6xnFROKudx3T3/fnWUAQgAU1+kUFc3e0ZZeX1dLRVEryNIVyxMQIcxWwdey+jlIAYowHRM0fJX3Scs80OnT/CERwh5LMlFyU1w578NqxW+AQl2E/9fxjgUTi8crOfDpwsUsmOWw0+Q5OUGhELv/2UZoHAjsaw9OinWUggKACo4SdpPlHYldoWF+J2yGWOW+F4iAQre4c+ocb6a9uSWOnTldFkioqhd9lhmV542+VonCvuy4Tu214NP+2UNd/4Kk3KJCf3iziQJrCBeLi1cLHdLUikgAQtvRFR/nepcF9legl+DywAkUHi5/1MNjlEQvlHyh2XbMiS85yu7/9LgM6Sr+0ukfZY5mSkOcvUkpHn+T+Nw/IrQAQ7lty5luvKUmBpI3ITxSmojJ1aJ0kj/dc0ZcQk+/qo0l0l3/eRLkYjw5j+MZKA8jEubrHzUCke98eSoj8l08+PGAA+DAKNtCwNZe4p6J1Ucod8Lo5RKFfA84CPLVyEzEPQFZ25U9grUK6ilF4GhEia/ndYXLBt3PGW3qa6CBBPM7rH3ABGAyYEtUwzB4CeVedA5o6cKpjRkIebqDNSOqltsr+w7kXdfFVtsK2FMGFZNt5rbpIR+ppztoJ6eOKHmKmi9nQ99ARKkTxRErOs9wJXNHaAuIRV38o1pxRrlQRzGsRuKBqxcQEpC8OPFpyKYcp6iD5l7cO/gRDTamLFyhiUBwKKMP07FAWTEJv8AAAAAABrhAfrtrFhR4yubI7X5QRqMK6xKrj7U3XuBHdGnLqSqcQAAAAAAGp0GAUFVV1YAAAAAAAUYUmIAACcQBsfKUtr4PgZbIXRxRESU79PjE4IBAFUA5i32yLSoX+GmfbRNwS3l2zMPesZrctxliv7fD0pBW0MAAAKqqMJFwAAAAAAqE/NX////+AAAAABkxCb7AAAAAGTEJvoAAAKqIcWxYAAAAAAlR5m4CP/mPsh1IezjYpDlJ4GRb5q4fTs2LjtyO6M0XgVimrIQ4kSh1qg7JKW4gbGkyRntVFR9JO/GNd3FPDit0BK6M+JzXh/h12YNCz9wxlZTvXrNtWNbzqT+91pvl5cphhSPMfAHyEzTPaGR9tKDy9KNu56pmhaY32d2vfEWQmKo22guegeR98oDxs67MmnUraco46a3zEnac2Bm80pasUgMO24=\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "935b55ef-c9bb-40fd-bc3d-0858b252507f",
+          "name": "**Deprecated: use /v2/price_feeds instead**",
+          "request": {
+            "name": "**Deprecated: use /v2/price_feeds instead**",
+            "description": {
+              "content": "**Deprecated: use /v2/price_feeds instead**\n\nGet the set of price feed IDs.\n\nThis endpoint fetches all of the price feed IDs for which price updates can be retrieved.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "price_feed_ids"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "af85df9e-1437-4657-ba2a-304a11c17327",
+              "name": "Price feed ids retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "price_feed_ids"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43\",\n  \"e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d4f7e01e-33df-460a-86cd-e2be8ba9a088",
+          "name": "Get the set of price feeds.",
+          "request": {
+            "name": "Get the set of price feeds.",
+            "description": {
+              "content": "Get the set of price feeds.\n\nThis endpoint fetches all price feeds from the Pyth network. It can be filtered by asset type\nand query string.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "price_feeds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "Optional query parameter. If provided, the results will be filtered to all price feeds whose symbol contains the query string. Query string is case insensitive."
+                },
+                {
+                  "disabled": false,
+                  "key": "asset_type",
+                  "value": "<string>",
+                  "description": "Optional query parameter. If provided, the results will be filtered by asset type. Possible values are crypto, equity, fx, metal, rates. Filter string is case insensitive."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "40392f9c-8584-4e2b-bf4e-20b4ed0179e3",
+              "name": "Price feeds metadata retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "price_feeds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "bitcoin"
+                    },
+                    {
+                      "key": "asset_type",
+                      "value": "crypto"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43\",\n    \"attributes\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    }\n  },\n  {\n    \"id\": \"e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43\",\n    \"attributes\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c1b6f7d7-9bf1-417a-9001-b21907d0671e",
+          "name": "Get the latest price updates by price feed id.",
+          "request": {
+            "name": "Get the latest price updates by price feed id.",
+            "description": {
+              "content": "Get the latest price updates by price feed id.\n\nGiven a collection of price feed ids, retrieve the latest Pyth price for each price feed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "updates",
+                "price",
+                "latest"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ids[]",
+                  "value": "<string>",
+                  "description": "(Required) Get the most recent price update for this set of price feed ids.\n\nThis parameter can be provided multiple times to retrieve multiple price updates,\nfor example see the following query string:\n\n```\n?ids[]=a12...&ids[]=b4c...\n```"
+                },
+                {
+                  "disabled": false,
+                  "key": "ids[]",
+                  "value": "<string>",
+                  "description": "(Required) Get the most recent price update for this set of price feed ids.\n\nThis parameter can be provided multiple times to retrieve multiple price updates,\nfor example see the following query string:\n\n```\n?ids[]=a12...&ids[]=b4c...\n```"
+                },
+                {
+                  "disabled": false,
+                  "key": "encoding",
+                  "value": "<string>",
+                  "description": "Optional encoding type. If true, return the price update in the encoding specified by the encoding parameter. Default is `hex`."
+                },
+                {
+                  "disabled": false,
+                  "key": "parsed",
+                  "value": "<boolean>",
+                  "description": "If true, include the parsed price update in the `parsed` field of each returned feed. Default is `true`."
+                },
+                {
+                  "disabled": false,
+                  "key": "ignore_invalid_price_ids",
+                  "value": "<boolean>",
+                  "description": "If true, invalid price IDs in the `ids` parameter are ignored. Only applicable to the v2 APIs. Default is `false`."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d41986c3-ee84-45c6-9242-38b28100e7cd",
+              "name": "Price updates retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "updates",
+                    "price",
+                    "latest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids[]",
+                      "value": "e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43"
+                    },
+                    {
+                      "key": "ids[]",
+                      "value": "e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43"
+                    },
+                    {
+                      "key": "encoding",
+                      "value": "base64"
+                    },
+                    {
+                      "key": "parsed",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "ignore_invalid_price_ids",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"binary\": {\n    \"encoding\": \"base64\",\n    \"data\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"parsed\": [\n    {\n      \"id\": \"e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43\",\n      \"price\": {\n        \"price\": \"2920679499999\",\n        \"conf\": \"509500001\",\n        \"expo\": -8,\n        \"publish_time\": 1717632000\n      },\n      \"ema_price\": {\n        \"price\": \"2920679499999\",\n        \"conf\": \"509500001\",\n        \"expo\": -8,\n        \"publish_time\": 1717632000\n      },\n      \"metadata\": {\n        \"prev_publish_time\": 1717632000,\n        \"proof_available_time\": 1717632000,\n        \"slot\": 85480034\n      }\n    },\n    {\n      \"id\": \"e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43\",\n      \"price\": {\n        \"price\": \"2920679499999\",\n        \"conf\": \"509500001\",\n        \"expo\": -8,\n        \"publish_time\": 1717632000\n      },\n      \"ema_price\": {\n        \"price\": \"2920679499999\",\n        \"conf\": \"509500001\",\n        \"expo\": -8,\n        \"publish_time\": 1717632000\n      },\n      \"metadata\": {\n        \"prev_publish_time\": 1717632000,\n        \"proof_available_time\": 1717632000,\n        \"slot\": 85480034\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "62b447cf-9d1a-4ad3-bde5-2b57b627ab38",
+              "name": "Price ids not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "updates",
+                    "price",
+                    "latest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids[]",
+                      "value": "e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43"
+                    },
+                    {
+                      "key": "ids[]",
+                      "value": "e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43"
+                    },
+                    {
+                      "key": "encoding",
+                      "value": "base64"
+                    },
+                    {
+                      "key": "parsed",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "ignore_invalid_price_ids",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d8b440fe-5d86-433b-bf01-9fe7b0ca65a4",
+          "name": "SSE route handler for streaming price updates.",
+          "request": {
+            "name": "SSE route handler for streaming price updates.",
+            "description": {
+              "content": "SSE route handler for streaming price updates.\n\nThe connection will automatically close after 24 hours to prevent resource leaks.\nClients should implement reconnection logic to maintain continuous price updates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "updates",
+                "price",
+                "stream"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ids[]",
+                  "value": "<string>",
+                  "description": "(Required) Get the most recent price update for this set of price feed ids.\n\nThis parameter can be provided multiple times to retrieve multiple price updates,\nfor example see the following query string:\n\n```\n?ids[]=a12...&ids[]=b4c...\n```"
+                },
+                {
+                  "disabled": false,
+                  "key": "ids[]",
+                  "value": "<string>",
+                  "description": "(Required) Get the most recent price update for this set of price feed ids.\n\nThis parameter can be provided multiple times to retrieve multiple price updates,\nfor example see the following query string:\n\n```\n?ids[]=a12...&ids[]=b4c...\n```"
+                },
+                {
+                  "disabled": false,
+                  "key": "encoding",
+                  "value": "<string>",
+                  "description": "Optional encoding type. If true, return the price update in the encoding specified by the encoding parameter. Default is `hex`."
+                },
+                {
+                  "disabled": false,
+                  "key": "parsed",
+                  "value": "<boolean>",
+                  "description": "If true, include the parsed price update in the `parsed` field of each returned feed. Default is `true`."
+                },
+                {
+                  "disabled": false,
+                  "key": "allow_unordered",
+                  "value": "<boolean>",
+                  "description": "If true, allows unordered price updates to be included in the stream."
+                },
+                {
+                  "disabled": false,
+                  "key": "benchmarks_only",
+                  "value": "<boolean>",
+                  "description": "If true, only include benchmark prices that are the initial price updates at a given timestamp (i.e., prevPubTime != pubTime)."
+                },
+                {
+                  "disabled": false,
+                  "key": "ignore_invalid_price_ids",
+                  "value": "<boolean>",
+                  "description": "If true, invalid price IDs in the `ids` parameter are ignored. Only applicable to the v2 APIs. Default is `false`."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9e73fb18-0686-4f53-a6ef-004c973ce843",
+              "name": "Price updates retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "updates",
+                    "price",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids[]",
+                      "value": "e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43"
+                    },
+                    {
+                      "key": "ids[]",
+                      "value": "e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43"
+                    },
+                    {
+                      "key": "encoding",
+                      "value": "base64"
+                    },
+                    {
+                      "key": "parsed",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "allow_unordered",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "benchmarks_only",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "ignore_invalid_price_ids",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"binary\": {\n    \"encoding\": \"base64\",\n    \"data\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"parsed\": [\n    {\n      \"id\": \"e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43\",\n      \"price\": {\n        \"price\": \"2920679499999\",\n        \"conf\": \"509500001\",\n        \"expo\": -8,\n        \"publish_time\": 1717632000\n      },\n      \"ema_price\": {\n        \"price\": \"2920679499999\",\n        \"conf\": \"509500001\",\n        \"expo\": -8,\n        \"publish_time\": 1717632000\n      },\n      \"metadata\": {\n        \"prev_publish_time\": 1717632000,\n        \"proof_available_time\": 1717632000,\n        \"slot\": 85480034\n      }\n    },\n    {\n      \"id\": \"e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43\",\n      \"price\": {\n        \"price\": \"2920679499999\",\n        \"conf\": \"509500001\",\n        \"expo\": -8,\n        \"publish_time\": 1717632000\n      },\n      \"ema_price\": {\n        \"price\": \"2920679499999\",\n        \"conf\": \"509500001\",\n        \"expo\": -8,\n        \"publish_time\": 1717632000\n      },\n      \"metadata\": {\n        \"prev_publish_time\": 1717632000,\n        \"proof_available_time\": 1717632000,\n        \"slot\": 85480034\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e39dac30-47ed-453e-b85b-d8d0ebb82022",
+              "name": "Price ids not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "updates",
+                    "price",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids[]",
+                      "value": "e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43"
+                    },
+                    {
+                      "key": "ids[]",
+                      "value": "e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43"
+                    },
+                    {
+                      "key": "encoding",
+                      "value": "base64"
+                    },
+                    {
+                      "key": "parsed",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "allow_unordered",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "benchmarks_only",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "ignore_invalid_price_ids",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d5233e1a-5f0e-4d25-bce7-d2bc96478c5c",
+          "name": "Get the latest price updates by price feed id.",
+          "request": {
+            "name": "Get the latest price updates by price feed id.",
+            "description": {
+              "content": "Get the latest price updates by price feed id.\n\nGiven a collection of price feed ids, retrieve the latest Pyth price for each price feed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "updates",
+                "price",
+                ":publish_time"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ids[]",
+                  "value": "<string>",
+                  "description": "(Required) Get the most recent price update for this set of price feed ids.\n\nThis parameter can be provided multiple times to retrieve multiple price updates,\nfor example see the following query string:\n\n```\n?ids[]=a12...&ids[]=b4c...\n```"
+                },
+                {
+                  "disabled": false,
+                  "key": "ids[]",
+                  "value": "<string>",
+                  "description": "(Required) Get the most recent price update for this set of price feed ids.\n\nThis parameter can be provided multiple times to retrieve multiple price updates,\nfor example see the following query string:\n\n```\n?ids[]=a12...&ids[]=b4c...\n```"
+                },
+                {
+                  "disabled": false,
+                  "key": "encoding",
+                  "value": "<string>",
+                  "description": "Optional encoding type. If true, return the price update in the encoding specified by the encoding parameter. Default is `hex`."
+                },
+                {
+                  "disabled": false,
+                  "key": "parsed",
+                  "value": "<boolean>",
+                  "description": "If true, include the parsed price update in the `parsed` field of each returned feed. Default is `true`."
+                },
+                {
+                  "disabled": false,
+                  "key": "ignore_invalid_price_ids",
+                  "value": "<boolean>",
+                  "description": "If true, invalid price IDs in the `ids` parameter are ignored. Only applicable to the v2 APIs. Default is `false`."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "publish_time",
+                  "description": "(Required) The unix timestamp in seconds. This endpoint will return the first update whose\npublish_time is >= the provided value."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3a1f563a-7a96-4861-b653-8011cbbbf57c",
+              "name": "Price updates retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "updates",
+                    "price",
+                    ":publish_time"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids[]",
+                      "value": "e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43"
+                    },
+                    {
+                      "key": "ids[]",
+                      "value": "e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43"
+                    },
+                    {
+                      "key": "encoding",
+                      "value": "base64"
+                    },
+                    {
+                      "key": "parsed",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "ignore_invalid_price_ids",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "publish_time",
+                      "description": "(Required) The unix timestamp in seconds. This endpoint will return the first update whose\npublish_time is >= the provided value."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"binary\": {\n    \"encoding\": \"base64\",\n    \"data\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"parsed\": [\n    {\n      \"id\": \"e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43\",\n      \"price\": {\n        \"price\": \"2920679499999\",\n        \"conf\": \"509500001\",\n        \"expo\": -8,\n        \"publish_time\": 1717632000\n      },\n      \"ema_price\": {\n        \"price\": \"2920679499999\",\n        \"conf\": \"509500001\",\n        \"expo\": -8,\n        \"publish_time\": 1717632000\n      },\n      \"metadata\": {\n        \"prev_publish_time\": 1717632000,\n        \"proof_available_time\": 1717632000,\n        \"slot\": 85480034\n      }\n    },\n    {\n      \"id\": \"e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43\",\n      \"price\": {\n        \"price\": \"2920679499999\",\n        \"conf\": \"509500001\",\n        \"expo\": -8,\n        \"publish_time\": 1717632000\n      },\n      \"ema_price\": {\n        \"price\": \"2920679499999\",\n        \"conf\": \"509500001\",\n        \"expo\": -8,\n        \"publish_time\": 1717632000\n      },\n      \"metadata\": {\n        \"prev_publish_time\": 1717632000,\n        \"proof_available_time\": 1717632000,\n        \"slot\": 85480034\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0c5ebc19-b2b0-4021-b04f-6366290425df",
+              "name": "Price ids not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "updates",
+                    "price",
+                    ":publish_time"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids[]",
+                      "value": "e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43"
+                    },
+                    {
+                      "key": "ids[]",
+                      "value": "e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43"
+                    },
+                    {
+                      "key": "encoding",
+                      "value": "base64"
+                    },
+                    {
+                      "key": "parsed",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "ignore_invalid_price_ids",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "publish_time",
+                      "description": "(Required) The unix timestamp in seconds. This endpoint will return the first update whose\npublish_time is >= the provided value."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "906753a2-f048-4812-974e-c36d99a82562",
+          "name": "Get the most recent publisher stake caps update data.",
+          "request": {
+            "name": "Get the most recent publisher stake caps update data.",
+            "description": {
+              "content": "Get the most recent publisher stake caps update data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "updates",
+                "publisher_stake_caps",
+                "latest"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "encoding",
+                  "value": "<string>",
+                  "description": "Get the most recent publisher stake caps update data.\nOptional encoding type. If true, return the message in the encoding specified by the encoding parameter. Default is `hex`."
+                },
+                {
+                  "disabled": false,
+                  "key": "parsed",
+                  "value": "<boolean>",
+                  "description": "If true, include the parsed update in the `parsed` field of each returned feed. Default is `true`."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "df3fa7d2-1744-4ad3-9694-5630a0e0e1c9",
+              "name": "Publisher stake caps update data retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "updates",
+                    "publisher_stake_caps",
+                    "latest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "encoding",
+                      "value": "base64"
+                    },
+                    {
+                      "key": "parsed",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"binary\": {\n    \"encoding\": \"hex\",\n    \"data\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"parsed\": [\n    {\n      \"publisher_stake_caps\": [\n        {\n          \"publisher\": \"string\",\n          \"cap\": 880\n        },\n        {\n          \"publisher\": \"string\",\n          \"cap\": 4506\n        }\n      ]\n    },\n    {\n      \"publisher_stake_caps\": [\n        {\n          \"publisher\": \"string\",\n          \"cap\": 8726\n        },\n        {\n          \"publisher\": \"string\",\n          \"cap\": 5126\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "2e522baa-64ee-4a6f-837e-3fc211a8eac6",
+    "name": "Benchmarks Price Differences rest API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

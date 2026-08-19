@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Benchmarks Price Differences Price Feeds API",
+    "version": "0.3.6"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Price Feeds",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Price Feeds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/price_feeds/",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "If provided, the results will be filtered to all price feeds whose symbol contains the query string. Query string is case insensitive."
+              },
+              {
+                "name": "asset_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by asset type. Possible values are `crypto`, `equity`, `fx`, `metal`, `rates`. Filter string is case insensitive."
+              }
+            ]
+          },
+          "docs": "Returns the price feed for all symbols or for selected symbols when filters are provided."
+        },
+        {
+          "info": {
+            "name": "Price Feed",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/price_feeds/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the price feed to be returned."
+              }
+            ]
+          },
+          "docs": "Returns the price feed for the given id."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

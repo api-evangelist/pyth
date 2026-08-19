@@ -1,0 +1,104 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Benchmarks Price Differences Updates API",
+    "version": "0.3.6"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Updates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Historical price updates for a provided timestamp",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/updates/price/:timestamp",
+            "params": [
+              {
+                "name": "timestamp",
+                "value": "",
+                "type": "path",
+                "description": "The timestamp for the requested price update in seconds since the Unix epoch."
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "List of price feed ids to include in the price update. Multiple ids can be specified by repeating the parameter, e.g. `?ids=a12...&ids=b4c...`.<br><br><b>Note:</b> If any of the provided IDs are invalid, an error message will be shown. The query will only succeed if all IDs are valid."
+              },
+              {
+                "name": "encoding",
+                "value": "",
+                "type": "query",
+                "description": "Encoding of the data. Defaults to `hex` if not given. Possible values are `hex`, `base64`."
+              },
+              {
+                "name": "parsed",
+                "value": "",
+                "type": "query",
+                "description": "If `true`, the historical price update will be parsed and returned in a JSON format along with the binary data. Defaults to `true` if not given. Possible values are `true`, `false`."
+              }
+            ]
+          },
+          "docs": "Returns the historical price updates at a specific timestamp for one or more provided price feed ids. This price update includes the data you need to post on-chain to prove the price at a specific time."
+        },
+        {
+          "info": {
+            "name": "Historical price updates for a provided time interval",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/updates/price/:timestamp/:interval",
+            "params": [
+              {
+                "name": "timestamp",
+                "value": "",
+                "type": "path",
+                "description": "Unix timestamp (UTC) of the start of the time range for the requested price updates, including timestamp."
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "path",
+                "description": "Time interval in seconds added to the provided timestamp for the requested price updates. For example, if the timestamp is 1716400000 and the interval is 60, this function will return price updates from time 1716400000 to 1716400060, inclusive of both. The time interval should not exceed 60 seconds."
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "List of price feed ids to include in the price update. Multiple ids can be specified by repeating the parameter, e.g. `?ids=a12...&ids=b4c...`"
+              },
+              {
+                "name": "encoding",
+                "value": "",
+                "type": "query",
+                "description": "Encoding of the data. Defaults to `hex` if not given. Possible values are `hex`, `base64`."
+              },
+              {
+                "name": "parsed",
+                "value": "",
+                "type": "query",
+                "description": "If `true`, the historical price update will be parsed and returned in a JSON format along with the binary data. Defaults to `true` if not given. Possible values are `true`, `false`."
+              },
+              {
+                "name": "unique",
+                "value": "",
+                "type": "query",
+                "description": "If `true`, only unique price updates will be returned. Defaults to `true` if not given. Possible values are `true`, `false`."
+              }
+            ]
+          },
+          "docs": "Returns the historical price updates within a specified time range for one or more provided price feed ids. This price update includes the data you need to post on-chain to prove the price at a specific time. The time interval should not exceed 60 seconds."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

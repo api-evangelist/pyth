@@ -1,0 +1,338 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Benchmarks Price Differences rest API",
+    "version": "0.3.6"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "rest",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "**Deprecated: use /v2/updates/price/{publish_time} instead**",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/get_price_feed",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "The id of the price feed to get an update for."
+              },
+              {
+                "name": "publish_time",
+                "value": "1717632000",
+                "type": "query",
+                "description": "The unix timestamp in seconds. This endpoint will return the first update whose\npublish_time is >= the provided value."
+              },
+              {
+                "name": "verbose",
+                "value": "",
+                "type": "query",
+                "description": "If true, include the `metadata` field in the response with additional metadata about the\nprice update."
+              },
+              {
+                "name": "binary",
+                "value": "",
+                "type": "query",
+                "description": "If true, include the binary price update in the `vaa` field of each returned feed. This\nbinary data can be submitted to Pyth contracts to update the on-chain price."
+              }
+            ]
+          },
+          "docs": "**Deprecated: use /v2/updates/price/{publish_time} instead**\n\nGet a price update for a price feed with a specific timestamp\n\nGiven a price feed id and timestamp, retrieve the Pyth price update closest to that timestamp."
+        },
+        {
+          "info": {
+            "name": "**Deprecated: use /v2/updates/price/{publish_time} instead**",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/get_vaa",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the price feed to get an update for."
+              },
+              {
+                "name": "publish_time",
+                "value": "1690576641",
+                "type": "query",
+                "description": "The unix timestamp in seconds. This endpoint will return the first update whose\npublish_time is >= the provided value."
+              }
+            ]
+          },
+          "docs": "**Deprecated: use /v2/updates/price/{publish_time} instead**\n\nGet a VAA for a price feed with a specific timestamp\n\nGiven a price feed id and timestamp, retrieve the Pyth price update closest to that timestamp."
+        },
+        {
+          "info": {
+            "name": "**Deprecated: use /v2/updates/price/{publish_time} instead**",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/get_vaa_ccip",
+            "params": [
+              {
+                "name": "data",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "**Deprecated: use /v2/updates/price/{publish_time} instead**\n\nGet a VAA for a price feed using CCIP\n\nThis endpoint accepts a single argument which is a hex-encoded byte string of the following form:\n`<price feed id (32 bytes> <publish time as unix timestamp (8 bytes, big endian)>`"
+        },
+        {
+          "info": {
+            "name": "**Deprecated: use /v2/updates/price/latest instead**",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/latest_price_feeds",
+            "params": [
+              {
+                "name": "ids[]",
+                "value": "e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43",
+                "type": "query",
+                "description": "Get the most recent price update for this set of price feed ids.\n\nThis parameter can be provided multiple times to retrieve multiple price updates,\nfor example see the following query string:\n\n```\n?ids[]=a12...&ids[]=b4c...\n```"
+              },
+              {
+                "name": "verbose",
+                "value": "",
+                "type": "query",
+                "description": "If true, include the `metadata` field in the response with additional metadata about\nthe price update."
+              },
+              {
+                "name": "binary",
+                "value": "",
+                "type": "query",
+                "description": "If true, include the binary price update in the `vaa` field of each returned feed.\nThis binary data can be submitted to Pyth contracts to update the on-chain price."
+              }
+            ]
+          },
+          "docs": "**Deprecated: use /v2/updates/price/latest instead**\n\nGet the latest price updates by price feed id.\n\nGiven a collection of price feed ids, retrieve the latest Pyth price for each price feed."
+        },
+        {
+          "info": {
+            "name": "**Deprecated: use /v2/updates/price/latest instead**",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/latest_vaas",
+            "params": [
+              {
+                "name": "ids[]",
+                "value": "e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43",
+                "type": "query",
+                "description": "Get the VAAs for this set of price feed ids.\n\nThis parameter can be provided multiple times to retrieve multiple price updates,\nfor example see the following query string:\n\n```\n?ids[]=a12...&ids[]=b4c...\n```"
+              }
+            ]
+          },
+          "docs": "**Deprecated: use /v2/updates/price/latest instead**\n\nGet VAAs for a set of price feed ids.\n\nGiven a collection of price feed ids, retrieve the latest VAA for each. The returned VAA(s) can\nbe submitted to the Pyth contract to update the on-chain price. If VAAs are not found for every\nprovided price ID the call will fail."
+        },
+        {
+          "info": {
+            "name": "**Deprecated: use /v2/price_feeds instead**",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/price_feed_ids"
+          },
+          "docs": "**Deprecated: use /v2/price_feeds instead**\n\nGet the set of price feed IDs.\n\nThis endpoint fetches all of the price feed IDs for which price updates can be retrieved."
+        },
+        {
+          "info": {
+            "name": "Get the set of price feeds.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/price_feeds",
+            "params": [
+              {
+                "name": "query",
+                "value": "bitcoin",
+                "type": "query",
+                "description": "Optional query parameter. If provided, the results will be filtered to all price feeds whose symbol contains the query string. Query string is case insensitive."
+              },
+              {
+                "name": "asset_type",
+                "value": "crypto",
+                "type": "query",
+                "description": "Optional query parameter. If provided, the results will be filtered by asset type. Possible values are crypto, equity, fx, metal, rates. Filter string is case insensitive."
+              }
+            ]
+          },
+          "docs": "Get the set of price feeds.\n\nThis endpoint fetches all price feeds from the Pyth network. It can be filtered by asset type\nand query string."
+        },
+        {
+          "info": {
+            "name": "Get the latest price updates by price feed id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/updates/price/latest",
+            "params": [
+              {
+                "name": "ids[]",
+                "value": "e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43",
+                "type": "query",
+                "description": "Get the most recent price update for this set of price feed ids.\n\nThis parameter can be provided multiple times to retrieve multiple price updates,\nfor example see the following query string:\n\n```\n?ids[]=a12...&ids[]=b4c...\n```"
+              },
+              {
+                "name": "encoding",
+                "value": "",
+                "type": "query",
+                "description": "Optional encoding type. If true, return the price update in the encoding specified by the encoding parameter. Default is `hex`."
+              },
+              {
+                "name": "parsed",
+                "value": "",
+                "type": "query",
+                "description": "If true, include the parsed price update in the `parsed` field of each returned feed. Default is `true`."
+              },
+              {
+                "name": "ignore_invalid_price_ids",
+                "value": "",
+                "type": "query",
+                "description": "If true, invalid price IDs in the `ids` parameter are ignored. Only applicable to the v2 APIs. Default is `false`."
+              }
+            ]
+          },
+          "docs": "Get the latest price updates by price feed id.\n\nGiven a collection of price feed ids, retrieve the latest Pyth price for each price feed."
+        },
+        {
+          "info": {
+            "name": "SSE route handler for streaming price updates.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/updates/price/stream",
+            "params": [
+              {
+                "name": "ids[]",
+                "value": "e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43",
+                "type": "query",
+                "description": "Get the most recent price update for this set of price feed ids.\n\nThis parameter can be provided multiple times to retrieve multiple price updates,\nfor example see the following query string:\n\n```\n?ids[]=a12...&ids[]=b4c...\n```"
+              },
+              {
+                "name": "encoding",
+                "value": "",
+                "type": "query",
+                "description": "Optional encoding type. If true, return the price update in the encoding specified by the encoding parameter. Default is `hex`."
+              },
+              {
+                "name": "parsed",
+                "value": "",
+                "type": "query",
+                "description": "If true, include the parsed price update in the `parsed` field of each returned feed. Default is `true`."
+              },
+              {
+                "name": "allow_unordered",
+                "value": "",
+                "type": "query",
+                "description": "If true, allows unordered price updates to be included in the stream."
+              },
+              {
+                "name": "benchmarks_only",
+                "value": "",
+                "type": "query",
+                "description": "If true, only include benchmark prices that are the initial price updates at a given timestamp (i.e., prevPubTime != pubTime)."
+              },
+              {
+                "name": "ignore_invalid_price_ids",
+                "value": "",
+                "type": "query",
+                "description": "If true, invalid price IDs in the `ids` parameter are ignored. Only applicable to the v2 APIs. Default is `false`."
+              }
+            ]
+          },
+          "docs": "SSE route handler for streaming price updates.\n\nThe connection will automatically close after 24 hours to prevent resource leaks.\nClients should implement reconnection logic to maintain continuous price updates."
+        },
+        {
+          "info": {
+            "name": "Get the latest price updates by price feed id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/updates/price/:publish_time",
+            "params": [
+              {
+                "name": "publish_time",
+                "value": "1717632000",
+                "type": "path",
+                "description": "The unix timestamp in seconds. This endpoint will return the first update whose\npublish_time is >= the provided value."
+              },
+              {
+                "name": "ids[]",
+                "value": "e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43",
+                "type": "query",
+                "description": "Get the most recent price update for this set of price feed ids.\n\nThis parameter can be provided multiple times to retrieve multiple price updates,\nfor example see the following query string:\n\n```\n?ids[]=a12...&ids[]=b4c...\n```"
+              },
+              {
+                "name": "encoding",
+                "value": "",
+                "type": "query",
+                "description": "Optional encoding type. If true, return the price update in the encoding specified by the encoding parameter. Default is `hex`."
+              },
+              {
+                "name": "parsed",
+                "value": "",
+                "type": "query",
+                "description": "If true, include the parsed price update in the `parsed` field of each returned feed. Default is `true`."
+              },
+              {
+                "name": "ignore_invalid_price_ids",
+                "value": "",
+                "type": "query",
+                "description": "If true, invalid price IDs in the `ids` parameter are ignored. Only applicable to the v2 APIs. Default is `false`."
+              }
+            ]
+          },
+          "docs": "Get the latest price updates by price feed id.\n\nGiven a collection of price feed ids, retrieve the latest Pyth price for each price feed."
+        },
+        {
+          "info": {
+            "name": "Get the most recent publisher stake caps update data.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/updates/publisher_stake_caps/latest",
+            "params": [
+              {
+                "name": "encoding",
+                "value": "",
+                "type": "query",
+                "description": "Get the most recent publisher stake caps update data.\nOptional encoding type. If true, return the message in the encoding specified by the encoding parameter. Default is `hex`."
+              },
+              {
+                "name": "parsed",
+                "value": "",
+                "type": "query",
+                "description": "If true, include the parsed update in the `parsed` field of each returned feed. Default is `true`."
+              }
+            ]
+          },
+          "docs": "Get the most recent publisher stake caps update data."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,865 @@
+{
+  "item": [
+    {
+      "id": "0b49296b-b55f-4289-9a3c-566f01a0deb0",
+      "name": "TradingView",
+      "description": {
+        "content": "Routes for TradingView Data Integration.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e7c919d3-54d1-46c8-a8ac-b8b3db0404e2",
+          "name": "History",
+          "request": {
+            "name": "History",
+            "description": {
+              "content": "Request for history bars. Each property of the response object is treated as a table column. \n\nData follows these requirements:\n\n- real-time data obtained from the API streaming endpoint must match the historical data, obtained from the /history API. The allowed count of mismatched bars (candles) must not exceed 5% for frequently traded symbols, otherwise the integration to TradingView is not possible;\n- the data must not include unreasonable price gaps, historical data gaps on 1-minute and Daily-resolutions (temporal gaps), obviously incorrect prices (adhesions).\n\nIf there is no data in the requested time period, endpoint returns an empty response: `{\"s\":\"ok\",\"t\":[],\"o\":[],\"h\":[],\"l\":[],\"c\":[],\"v\":[]}`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "shims",
+                "tradingview",
+                "history"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) Symbol name or ticker. This is case-insensitive."
+                },
+                {
+                  "disabled": false,
+                  "key": "resolution",
+                  "value": "<string>",
+                  "description": "(Required) Symbol resolution. Possible resolutions are 1, 2, 5, 15, 30, 60, 120, 240, 360, 720, D, 1D, W, 1W, M, 1M. D, W, M are aliases for 1D, 1W, 1M correspondingly. D and 1D mean the same and equal to 1 day. 1W means 1 week. 1M means 1 month."
+                },
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<integer>",
+                  "description": "(Required) Unix timestamp (UTC) of the leftmost required bar, including from."
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<integer>",
+                  "description": "(Required) Unix timestamp (UTC) of the rightmost required bar, including to. It can be in the future. In this case, the rightmost required bar is the latest available bar."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "58b9a928-1e5a-4f12-9801-5b30c823fe45",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "shims",
+                    "tradingview",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "Crypto.BTC/USD"
+                    },
+                    {
+                      "key": "resolution",
+                      "value": "1"
+                    },
+                    {
+                      "key": "from",
+                      "value": "1684137600"
+                    },
+                    {
+                      "key": "to",
+                      "value": "1684141200"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"s\": \"ok\",\n  \"t\": [\n    1684127160,\n    1684127220\n  ],\n  \"o\": [\n    27281.83,\n    27297.19886\n  ],\n  \"h\": [\n    27296.75,\n    27300.03417102\n  ],\n  \"l\": [\n    27279.24580449,\n    27292.33027595\n  ],\n  \"c\": [\n    27296.35698548,\n    27294\n  ],\n  \"v\": [\n    0,\n    0\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d2c4401c-7f96-4839-8af0-65f921d5bc48",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "shims",
+                    "tradingview",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "Crypto.BTC/USD"
+                    },
+                    {
+                      "key": "resolution",
+                      "value": "1"
+                    },
+                    {
+                      "key": "from",
+                      "value": "1684137600"
+                    },
+                    {
+                      "key": "to",
+                      "value": "1684141200"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b29db489-3a8f-4f15-833c-bb01aca80950",
+          "name": "Groups",
+          "request": {
+            "name": "Groups",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "shims",
+                "tradingview",
+                "groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2ce9e22d-0ba3-4cc8-9780-dc470ce7e937",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "shims",
+                    "tradingview",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"s\": \"ok\",\n  \"d\": {\n    \"groups\": [\n      {\n        \"id\": \"pyth_stock\"\n      },\n      {\n        \"id\": \"pyth_forex\"\n      },\n      {\n        \"id\": \"pyth_crypto\"\n      },\n      {\n        \"id\": \"pyth_cfd\"\n      },\n      {\n        \"id\": \"pyth_bonds\"\n      },\n      {\n        \"id\": \"pyth_cont\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "89999f8f-b524-403b-8271-f0a2da3433aa",
+          "name": "Symbol Info",
+          "request": {
+            "name": "Symbol Info",
+            "description": {
+              "content": "Get a list of all instruments.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "shims",
+                "tradingview",
+                "symbol_info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "group",
+                  "value": "<string>",
+                  "description": "ID of a symbol group. If it is present then only symbols that belong to this group should be returned. Possible values are provided by the /groups endpoint."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cb7c39fd-c49e-4a86-9104-bc39943337c0",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "shims",
+                    "tradingview",
+                    "symbol_info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "group",
+                      "value": "pyth_stock"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"s\": \"ok\",\n  \"symbol\": [\n    \"1INCHUSD\",\n    \"AAPL\",\n    \"AAVEUSD\"\n  ],\n  \"description\": [\n    \"1INCH / US DOLLAR\",\n    \"APPLE INC / US DOLLAR\",\n    \"AAVE / US DOLLAR\"\n  ],\n  \"currency\": [\n    \"USD\",\n    \"USD\",\n    \"USD\"\n  ],\n  \"exchange_listed\": [\n    \"PYTH\",\n    \"PYTH\",\n    \"PYTH\"\n  ],\n  \"exchange_traded\": [\n    \"PYTH\",\n    \"PYTH\",\n    \"PYTH\"\n  ],\n  \"minmovement\": [\n    1,\n    1,\n    1\n  ],\n  \"pricescale\": [\n    100000000,\n    100000,\n    100000000\n  ],\n  \"timezone\": [\n    \"Etc/UTC\",\n    \"America/New_York\",\n    \"Etc/UTC\"\n  ],\n  \"type\": [\n    \"crypto\",\n    \"stock\",\n    \"crypto\"\n  ],\n  \"session_regular\": [\n    \"24x7\",\n    \"0930-1600\",\n    \"24x7\"\n  ],\n  \"base_currency\": [\n    null,\n    null,\n    null\n  ],\n  \"minmovement2\": [\n    0,\n    0,\n    0\n  ],\n  \"fractional\": [\n    false,\n    false,\n    false\n  ],\n  \"root\": [\n    null,\n    null,\n    null\n  ],\n  \"root_description\": [\n    null,\n    null,\n    null\n  ],\n  \"has_intraday\": [\n    true,\n    true,\n    true\n  ],\n  \"has_no_volume\": [\n    true,\n    true,\n    true\n  ],\n  \"ticker\": [\n    \"1INCH/USD\",\n    \"AAPL/USD\",\n    \"AAVE/USD\"\n  ],\n  \"supported_resolutions\": [\n    [\n      \"1\"\n    ],\n    [\n      \"1\"\n    ],\n    [\n      \"1\"\n    ]\n  ],\n  \"has_daily\": [\n    false,\n    false,\n    false\n  ],\n  \"intraday_multipliers\": [\n    [\n      \"1\"\n    ],\n    [\n      \"1\"\n    ],\n    [\n      \"1\"\n    ]\n  ],\n  \"has_weekly_and_monthly\": [\n    false,\n    false,\n    false\n  ],\n  \"pointvalue\": [\n    1,\n    1,\n    1\n  ],\n  \"expiration\": [\n    null,\n    null,\n    null\n  ],\n  \"bar_source\": [\n    \"trade\",\n    \"trade\",\n    \"trade\"\n  ],\n  \"bar_transform\": [\n    \"none\",\n    \"none\",\n    \"none\"\n  ],\n  \"bar_fillgaps\": [\n    false,\n    false,\n    false\n  ],\n  \"typespecs\": [\n    \"crypto\",\n    \"crypto\",\n    \"crypto\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d7b9271a-46e9-46a4-92ec-7a70d01bbea9",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "shims",
+                    "tradingview",
+                    "symbol_info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "group",
+                      "value": "pyth_stock"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6a6f9be8-e651-4033-9c8b-f1fab6de669d",
+          "name": "Symbol Resolution",
+          "request": {
+            "name": "Symbol Resolution",
+            "description": {
+              "content": "Request for symbol resolution data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "shims",
+                "tradingview",
+                "symbols"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) Symbol name or ticker."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7869ed83-7bb4-4294-9506-c1b7c501144b",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "shims",
+                    "tradingview",
+                    "symbols"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "Crypto.BTC/USD"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"BTCUSD\",\n  \"description\": \"BITCOIN / US DOLLAR\",\n  \"session\": \"24x7\",\n  \"ticker\": \"Crypto.BTC/USD\",\n  \"has_intraday\": true,\n  \"has_daily\": true,\n  \"has_weekly_and_monthly\": true,\n  \"intraday_multipliers\": [\n    \"1\",\n    \"2\",\n    \"5\",\n    \"15\",\n    \"30\",\n    \"60\",\n    \"120\",\n    \"240\",\n    \"360\",\n    \"720\"\n  ],\n  \"daily_multipliers\": [\n    \"1\"\n  ],\n  \"weekly_multipliers\": [\n    \"1\"\n  ],\n  \"monthly_multipliers\": [\n    \"1\"\n  ],\n  \"timezone\": \"Etc/UTC\",\n  \"minmov\": 1,\n  \"pricescale\": 100000000,\n  \"supported_resolutions\": [\n    \"1\",\n    \"2\",\n    \"5\",\n    \"15\",\n    \"30\",\n    \"60\",\n    \"120\",\n    \"240\",\n    \"360\",\n    \"720\",\n    \"D\",\n    \"1D\",\n    \"W\",\n    \"1W\",\n    \"M\",\n    \"1M\"\n  ],\n  \"exchange\": \"PYTH\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b0f326df-08e5-4198-9733-25be3f6b6cc0",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "shims",
+                    "tradingview",
+                    "symbols"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "Crypto.BTC/USD"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4a079c4e-d610-44c0-aea1-d58e0473cc09",
+          "name": "Symbol Search",
+          "request": {
+            "name": "Symbol Search",
+            "description": {
+              "content": "Request for symbol search data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "shims",
+                "tradingview",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "(Required) Text typed by the user in the Symbol Search edit box."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Type of the requested symbol. If no type is provided, all types should be returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "exchange",
+                  "value": "PYTH",
+                  "description": "Exchange name of the requested symbol. Default value is PYTH."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "15",
+                  "description": "The maximum number of symbols in a response. Default value is 15."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "274490e4-c642-4a4a-af48-6006668f9866",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "shims",
+                    "tradingview",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "BTC"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exchange",
+                      "value": "PYTH"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "15"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"description\": \"BITCOIN CASH / US DOLLAR\",\n    \"exchange\": \"PYTH\",\n    \"full_name\": \"Crypto.BCH/USD\",\n    \"symbol\": \"BCHUSD\",\n    \"ticker\": \"Crypto.BCH/USD\",\n    \"type\": \"crypto\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "64941a0b-d5e0-4328-9467-30b31a33c28a",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "shims",
+                    "tradingview",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "BTC"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exchange",
+                      "value": "PYTH"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "15"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "85ce7286-72ff-4fe1-80e9-494a8e5ddede",
+          "name": "Data Feed Configuration Data",
+          "request": {
+            "name": "Data Feed Configuration Data",
+            "description": {
+              "content": "Request for config data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "shims",
+                "tradingview",
+                "config"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "392d400f-a2c7-4d40-b2a8-d7c623784a32",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "shims",
+                    "tradingview",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"supported_resolutions\": [\n    \"1\",\n    \"2\",\n    \"5\",\n    \"15\",\n    \"30\",\n    \"60\",\n    \"120\",\n    \"240\",\n    \"360\",\n    \"720\",\n    \"D\",\n    \"1D\",\n    \"W\",\n    \"1W\",\n    \"M\",\n    \"1M\"\n  ],\n  \"supports_group_request\": false,\n  \"supports_marks\": false,\n  \"supports_search\": true,\n  \"supports_timescale_marks\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b4810c92-ef9b-4219-867f-a8c8e9c337a3",
+          "name": "Streaming",
+          "request": {
+            "name": "Streaming",
+            "description": {
+              "content": "Request for streaming data. `f` is always \"t\" and `s` is always 0.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "shims",
+                "tradingview",
+                "streaming"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "70d819df-398a-4919-a159-e5b3dd6c340c",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "shims",
+                    "tradingview",
+                    "streaming"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"Crypto.BTC/USD\",\n  \"p\": 30416.745,\n  \"t\": 1687766105,\n  \"f\": \"t\",\n  \"s\": 0\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "8b9cc48a-33a1-4f38-9871-a3c6fffaafc3",
+    "name": "Benchmarks Price Differences TradingView API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Routes for TradingView Data Integration.",
+      "type": "text/plain"
+    }
+  }
+}
