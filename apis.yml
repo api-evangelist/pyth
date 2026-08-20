@@ -73,6 +73,8 @@ apis:
   humanURL: https://docs.pyth.network/price-feeds/core
   baseURL: https://hermes.pyth.network
   tags:
+  - REST
+  tags_raw:
   - rest
   properties:
   - type: OpenAPI
