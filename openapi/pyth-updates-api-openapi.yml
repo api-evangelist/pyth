@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Benchmarks Price Differences Updates API
+  title: Benchmarks Updates API
   version: 0.3.6
 tags:
 - name: Updates
@@ -255,40 +255,43 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    ProofData:
+    Price:
       properties:
-        encoding:
-          $ref: '#/components/schemas/EncodingEnum'
-          title: Encoding used for the `data` field
-        data:
-          items:
-            type: string
-          type: array
-          title: An array of data that can be used as the `updateData` argumentfor pyth smart contracts
-      type: object
-      required:
-      - encoding
-      - data
-      title: ProofData
-    ParsedData:
-      properties:
-        id:
+        conf:
           type: string
-          title: Id
+          title: Conf
+        expo:
+          type: integer
+          title: Expo
         price:
-          $ref: '#/components/schemas/Price'
-        ema_price:
-          $ref: '#/components/schemas/Price'
-          title: Exponentially-weighted moving average price
-        metadata:
-          $ref: '#/components/schemas/Metadata'
+          type: string
+          title: Price
+        publish_time:
+          type: integer
+          title: Publish Time
       type: object
       required:
-      - id
+      - conf
+      - expo
       - price
-      - ema_price
-      - metadata
-      title: ParsedData
+      - publish_time
+      title: Price
+    PriceUpdatesResponse:
+      properties:
+        binary:
+          $ref: '#/components/schemas/ProofData'
+          title: Proof data that can be used on-chain
+        parsed:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/ParsedData'
+            type: array
+          - type: 'null'
+          title: Parsed version of the data
+      type: object
+      required:
+      - binary
+      title: PriceUpdatesResponse
     ValidationError:
       properties:
         loc:
@@ -316,27 +319,49 @@ components:
       - hex
       - base64
       title: EncodingEnum
-    Price:
+    ProofData:
       properties:
-        conf:
-          type: string
-          title: Conf
-        expo:
-          type: integer
-          title: Expo
-        price:
-          type: string
-          title: Price
-        publish_time:
-          type: integer
-          title: Publish Time
+        encoding:
+          $ref: '#/components/schemas/EncodingEnum'
+          title: Encoding used for the `data` field
+        data:
+          items:
+            type: string
+          type: array
+          title: An array of data that can be used as the `updateData` argumentfor pyth smart contracts
       type: object
       required:
-      - conf
-      - expo
+      - encoding
+      - data
+      title: ProofData
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ParsedData:
+      properties:
+        id:
+          type: string
+          title: Id
+        price:
+          $ref: '#/components/schemas/Price'
+        ema_price:
+          $ref: '#/components/schemas/Price'
+          title: Exponentially-weighted moving average price
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+      type: object
+      required:
+      - id
       - price
-      - publish_time
-      title: Price
+      - ema_price
+      - metadata
+      title: ParsedData
     Metadata:
       properties:
         slot:
@@ -356,28 +381,3 @@ components:
           title: Prev Publish Time
       type: object
       title: Metadata
-    PriceUpdatesResponse:
-      properties:
-        binary:
-          $ref: '#/components/schemas/ProofData'
-          title: Proof data that can be used on-chain
-        parsed:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/ParsedData'
-            type: array
-          - type: 'null'
-          title: Parsed version of the data
-      type: object
-      required:
-      - binary
-      title: PriceUpdatesResponse
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError

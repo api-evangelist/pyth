@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Benchmarks Price Differences Price Feeds API
+  title: Benchmarks Price Feeds API
   version: 0.3.6
 tags:
 - name: Price Feeds
@@ -155,43 +155,6 @@ components:
       - msg
       - type
       title: ValidationError
-    PriceFeed:
-      properties:
-        id:
-          type: string
-          title: Id
-        market_hours:
-          anyOf:
-          - $ref: '#/components/schemas/MarketHours'
-          - type: 'null'
-        attributes:
-          additionalProperties:
-            type: string
-          type: object
-          title: Attributes
-      type: object
-      required:
-      - id
-      - market_hours
-      - attributes
-      title: PriceFeed
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    PriceFeedsResponse:
-      items:
-        $ref: '#/components/schemas/PriceFeed'
-      type: array
-      title: PriceFeedsResponse
-    PriceFeedResponse:
-      $ref: '#/components/schemas/PriceFeed'
-      title: PriceFeedResponse
     MarketHours:
       properties:
         is_open:
@@ -213,3 +176,40 @@ components:
       - next_open
       - next_close
       title: MarketHours
+    PriceFeed:
+      properties:
+        id:
+          type: string
+          title: Id
+        market_hours:
+          anyOf:
+          - $ref: '#/components/schemas/MarketHours'
+          - type: 'null'
+        attributes:
+          additionalProperties:
+            type: string
+          type: object
+          title: Attributes
+      type: object
+      required:
+      - id
+      - market_hours
+      - attributes
+      title: PriceFeed
+    PriceFeedResponse:
+      $ref: '#/components/schemas/PriceFeed'
+      title: PriceFeedResponse
+    PriceFeedsResponse:
+      items:
+        $ref: '#/components/schemas/PriceFeed'
+      type: array
+      title: PriceFeedsResponse
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError

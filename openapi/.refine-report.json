@@ -1,22 +1,34 @@
 {
   "provider": "pyth",
   "sources": [
-    "pyth-price-differences-api-openapi.yml",
-    "pyth-price-feeds-api-openapi.yml",
-    "pyth-rest-api-openapi.yml",
-    "pyth-tradingview-api-openapi.yml",
-    "pyth-updates-api-openapi.yml"
+    "_original/pyth-benchmarks-openapi-original.json",
+    "_original/pyth-hermes-openapi-original.json"
   ],
   "outputs": [
     "pyth-price-differences-api-openapi.yml",
     "pyth-price-feeds-api-openapi.yml",
-    "pyth-rest-api-openapi.yml",
     "pyth-tradingview-api-openapi.yml",
-    "pyth-updates-api-openapi.yml"
+    "pyth-updates-api-openapi.yml",
+    "pyth-rest-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "pyth-benchmarks-openapi-original.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "pyth-benchmarks-openapi-original.json: declared missing tag: Price Differences",
+    "pyth-benchmarks-openapi-original.json: declared missing tag: Price Feeds",
+    "pyth-benchmarks-openapi-original.json: declared missing tag: Updates",
+    "pyth-hermes-openapi-original.json: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "pyth-hermes-openapi-original.json: declared missing tag: rest",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "pyth-price-differences-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pyth-price-feeds-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pyth-rest-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pyth-tradingview-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pyth-updates-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

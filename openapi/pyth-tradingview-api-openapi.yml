@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Benchmarks Price Differences TradingView API
+  title: Benchmarks Trading View API
   version: 0.3.6
   description: Routes for TradingView Data Integration.
 tags:
@@ -12,7 +12,18 @@ paths:
       tags:
       - TradingView
       summary: History
-      description: "Request for history bars. Each property of the response object is treated as a table column. \n\nData follows these requirements:\n\n- real-time data obtained from the API streaming endpoint must match the historical data, obtained from the /history API. The allowed count of mismatched bars (candles) must not exceed 5% for frequently traded symbols, otherwise the integration to TradingView is not possible;\n- the data must not include unreasonable price gaps, historical data gaps on 1-minute and Daily-resolutions (temporal gaps), obviously incorrect prices (adhesions).\n\nIf there is no data in the requested time period, endpoint returns an empty response: `{\"s\":\"ok\",\"t\":[],\"o\":[],\"h\":[],\"l\":[],\"c\":[],\"v\":[]}`"
+      description: 'Request for history bars. Each property of the response object is treated as a table column.
+
+
+        Data follows these requirements:
+
+
+        - real-time data obtained from the API streaming endpoint must match the historical data, obtained from the /history API. The allowed count of mismatched bars (candles) must not exceed 5% for frequently traded symbols, otherwise the integration to TradingView is not possible;
+
+        - the data must not include unreasonable price gaps, historical data gaps on 1-minute and Daily-resolutions (temporal gaps), obviously incorrect prices (adhesions).
+
+
+        If there is no data in the requested time period, endpoint returns an empty response: `{"s":"ok","t":[],"o":[],"h":[],"l":[],"c":[],"v":[]}`'
       operationId: tradingview_history_route_v1_shims_tradingview_history_get
       parameters:
       - name: symbol
@@ -508,6 +519,132 @@ paths:
                     s: 0
 components:
   schemas:
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    TradingViewErrorResponse:
+      properties:
+        s:
+          type: string
+          title: S
+        errmsg:
+          type: string
+          title: Errmsg
+      type: object
+      required:
+      - s
+      - errmsg
+      title: TradingViewErrorResponse
+    TradingViewStreamResponse:
+      properties:
+        id:
+          type: string
+          title: Id
+        p:
+          type: number
+          title: P
+        t:
+          type: integer
+          title: T
+        f:
+          type: string
+          title: F
+        s:
+          type: integer
+          title: S
+      type: object
+      required:
+      - id
+      - p
+      - t
+      - f
+      - s
+      title: TradingViewStreamResponse
+    TradingViewConfigResponse:
+      properties:
+        supported_resolutions:
+          items:
+            type: string
+          type: array
+          title: Supported Resolutions
+        supports_group_request:
+          type: boolean
+          title: Supports Group Request
+        supports_marks:
+          type: boolean
+          title: Supports Marks
+        supports_search:
+          type: boolean
+          title: Supports Search
+        supports_timescale_marks:
+          type: boolean
+          title: Supports Timescale Marks
+      type: object
+      required:
+      - supported_resolutions
+      - supports_group_request
+      - supports_marks
+      - supports_search
+      - supports_timescale_marks
+      title: TradingViewConfigResponse
+    TradingViewSearchSymbolResultItem:
+      properties:
+        description:
+          type: string
+          title: Description
+        exchange:
+          type: string
+          title: Exchange
+        full_name:
+          type: string
+          title: Full Name
+        symbol:
+          type: string
+          title: Symbol
+        ticker:
+          type: string
+          title: Ticker
+        type:
+          type: string
+          title: Type
+      type: object
+      required:
+      - description
+      - exchange
+      - full_name
+      - symbol
+      - ticker
+      - type
+      title: TradingViewSearchSymbolResultItem
+    TradingViewGroupList:
+      properties:
+        groups:
+          items:
+            $ref: '#/components/schemas/TradingViewGroup'
+          type: array
+          title: Groups
+      type: object
+      required:
+      - groups
+      title: TradingViewGroupList
     TradingViewSymbolsResponse:
       properties:
         name:
@@ -587,6 +724,15 @@ components:
       - supported_resolutions
       - exchange
       title: TradingViewSymbolsResponse
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     TradingViewHistoryResponse:
       properties:
         s:
@@ -632,79 +778,11 @@ components:
       - c
       - v
       title: TradingViewHistoryResponse
-    TradingViewGroup:
-      properties:
-        id:
-          type: string
-          title: Id
-      type: object
-      required:
-      - id
-      title: TradingViewGroup
-    TradingViewGroupList:
-      properties:
-        groups:
-          items:
-            $ref: '#/components/schemas/TradingViewGroup'
-          type: array
-          title: Groups
-      type: object
-      required:
-      - groups
-      title: TradingViewGroupList
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
     TradingViewSearchResponse:
       items:
         $ref: '#/components/schemas/TradingViewSearchSymbolResultItem'
       type: array
       title: TradingViewSearchResponse
-    TradingViewConfigResponse:
-      properties:
-        supported_resolutions:
-          items:
-            type: string
-          type: array
-          title: Supported Resolutions
-        supports_group_request:
-          type: boolean
-          title: Supports Group Request
-        supports_marks:
-          type: boolean
-          title: Supports Marks
-        supports_search:
-          type: boolean
-          title: Supports Search
-        supports_timescale_marks:
-          type: boolean
-          title: Supports Timescale Marks
-      type: object
-      required:
-      - supported_resolutions
-      - supports_group_request
-      - supports_marks
-      - supports_search
-      - supports_timescale_marks
-      title: TradingViewConfigResponse
     TradingViewSymbolInfoResponse:
       properties:
         s:
@@ -910,15 +988,6 @@ components:
       - bar-fillgaps
       - typespecs
       title: TradingViewSymbolInfoResponse
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     TradingViewGroupsResponse:
       properties:
         s:
@@ -931,70 +1000,12 @@ components:
       - s
       - d
       title: TradingViewGroupsResponse
-    TradingViewSearchSymbolResultItem:
-      properties:
-        description:
-          type: string
-          title: Description
-        exchange:
-          type: string
-          title: Exchange
-        full_name:
-          type: string
-          title: Full Name
-        symbol:
-          type: string
-          title: Symbol
-        ticker:
-          type: string
-          title: Ticker
-        type:
-          type: string
-          title: Type
-      type: object
-      required:
-      - description
-      - exchange
-      - full_name
-      - symbol
-      - ticker
-      - type
-      title: TradingViewSearchSymbolResultItem
-    TradingViewStreamResponse:
+    TradingViewGroup:
       properties:
         id:
           type: string
           title: Id
-        p:
-          type: number
-          title: P
-        t:
-          type: integer
-          title: T
-        f:
-          type: string
-          title: F
-        s:
-          type: integer
-          title: S
       type: object
       required:
       - id
-      - p
-      - t
-      - f
-      - s
-      title: TradingViewStreamResponse
-    TradingViewErrorResponse:
-      properties:
-        s:
-          type: string
-          title: S
-        errmsg:
-          type: string
-          title: Errmsg
-      type: object
-      required:
-      - s
-      - errmsg
-      title: TradingViewErrorResponse
+      title: TradingViewGroup
