@@ -44,6 +44,11 @@ paths:
                     - 2815.9
 components:
   schemas:
+    PriceDifferencesResponse:
+      items:
+        $ref: '#/components/schemas/PriceDifference'
+      type: array
+      title: PriceDifferencesResponse
     PriceDifference:
       properties:
         symbol:
@@ -77,8 +82,3 @@ components:
       - week_price_diff_decimal
       - sparkline
       title: PriceDifference
-    PriceDifferencesResponse:
-      items:
-        $ref: '#/components/schemas/PriceDifference'
-      type: array
-      title: PriceDifferencesResponse

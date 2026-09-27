@@ -82,7 +82,7 @@ apis:
   - type: OpenAPI
     url: openapi/pyth-price-feeds-api-openapi.yml
 - aid: pyth:pyth-rest-api
-  name: Pyth rest API
+  name: Pyth Rest API
   description: The rest API from Pyth — 11 operation(s) for rest.
   humanURL: https://docs.pyth.network/price-feeds/core
   baseURL: https://hermes.pyth.network

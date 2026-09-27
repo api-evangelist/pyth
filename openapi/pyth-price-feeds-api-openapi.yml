@@ -134,6 +134,9 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    PriceFeedResponse:
+      $ref: '#/components/schemas/PriceFeed'
+      title: PriceFeedResponse
     ValidationError:
       properties:
         loc:
@@ -155,6 +158,40 @@ components:
       - msg
       - type
       title: ValidationError
+    PriceFeedsResponse:
+      items:
+        $ref: '#/components/schemas/PriceFeed'
+      type: array
+      title: PriceFeedsResponse
+    PriceFeed:
+      properties:
+        id:
+          type: string
+          title: Id
+        market_hours:
+          anyOf:
+          - $ref: '#/components/schemas/MarketHours'
+          - type: 'null'
+        attributes:
+          additionalProperties:
+            type: string
+          type: object
+          title: Attributes
+      type: object
+      required:
+      - id
+      - market_hours
+      - attributes
+      title: PriceFeed
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     MarketHours:
       properties:
         is_open:
@@ -176,40 +213,3 @@ components:
       - next_open
       - next_close
       title: MarketHours
-    PriceFeed:
-      properties:
-        id:
-          type: string
-          title: Id
-        market_hours:
-          anyOf:
-          - $ref: '#/components/schemas/MarketHours'
-          - type: 'null'
-        attributes:
-          additionalProperties:
-            type: string
-          type: object
-          title: Attributes
-      type: object
-      required:
-      - id
-      - market_hours
-      - attributes
-      title: PriceFeed
-    PriceFeedResponse:
-      $ref: '#/components/schemas/PriceFeed'
-      title: PriceFeedResponse
-    PriceFeedsResponse:
-      items:
-        $ref: '#/components/schemas/PriceFeed'
-      type: array
-      title: PriceFeedsResponse
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
