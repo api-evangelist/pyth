@@ -255,46 +255,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    Metadata:
-      properties:
-        slot:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Slot
-        proof_available_time:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Proof Available Time
-        prev_publish_time:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Prev Publish Time
-      type: object
-      title: Metadata
     Price:
       properties:
         conf:
@@ -331,6 +291,37 @@ components:
       - encoding
       - data
       title: ProofData
+    EncodingEnum:
+      type: string
+      enum:
+      - hex
+      - base64
+      title: EncodingEnum
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    PriceUpdatesResponse:
+      properties:
+        binary:
+          $ref: '#/components/schemas/ProofData'
+          title: Proof data that can be used on-chain
+        parsed:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/ParsedData'
+            type: array
+          - type: 'null'
+          title: Parsed version of the data
+      type: object
+      required:
+      - binary
+      title: PriceUpdatesResponse
     ParsedData:
       properties:
         id:
@@ -350,34 +341,43 @@ components:
       - ema_price
       - metadata
       title: ParsedData
-    HTTPValidationError:
+    Metadata:
       properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    EncodingEnum:
-      type: string
-      enum:
-      - hex
-      - base64
-      title: EncodingEnum
-    PriceUpdatesResponse:
-      properties:
-        binary:
-          $ref: '#/components/schemas/ProofData'
-          title: Proof data that can be used on-chain
-        parsed:
+        slot:
           anyOf:
-          - items:
-              $ref: '#/components/schemas/ParsedData'
-            type: array
+          - type: integer
           - type: 'null'
-          title: Parsed version of the data
+          title: Slot
+        proof_available_time:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Proof Available Time
+        prev_publish_time:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Prev Publish Time
+      type: object
+      title: Metadata
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
       type: object
       required:
-      - binary
-      title: PriceUpdatesResponse
+      - loc
+      - msg
+      - type
+      title: ValidationError
