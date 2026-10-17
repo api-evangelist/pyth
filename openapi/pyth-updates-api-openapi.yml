@@ -255,6 +255,25 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    ParsedData:
+      properties:
+        id:
+          type: string
+          title: Id
+        price:
+          $ref: '#/components/schemas/Price'
+        ema_price:
+          $ref: '#/components/schemas/Price'
+          title: Exponentially-weighted moving average price
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+      type: object
+      required:
+      - id
+      - price
+      - ema_price
+      - metadata
+      title: ParsedData
     ValidationError:
       properties:
         loc:
@@ -292,21 +311,6 @@ components:
       required:
       - binary
       title: PriceUpdatesResponse
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    EncodingEnum:
-      type: string
-      enum:
-      - hex
-      - base64
-      title: EncodingEnum
     ProofData:
       properties:
         encoding:
@@ -322,25 +326,12 @@ components:
       - encoding
       - data
       title: ProofData
-    ParsedData:
-      properties:
-        id:
-          type: string
-          title: Id
-        price:
-          $ref: '#/components/schemas/Price'
-        ema_price:
-          $ref: '#/components/schemas/Price'
-          title: Exponentially-weighted moving average price
-        metadata:
-          $ref: '#/components/schemas/Metadata'
-      type: object
-      required:
-      - id
-      - price
-      - ema_price
-      - metadata
-      title: ParsedData
+    EncodingEnum:
+      type: string
+      enum:
+      - hex
+      - base64
+      title: EncodingEnum
     Price:
       properties:
         conf:
@@ -381,3 +372,12 @@ components:
           title: Prev Publish Time
       type: object
       title: Metadata
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError

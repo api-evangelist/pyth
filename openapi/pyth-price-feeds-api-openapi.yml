@@ -134,6 +134,9 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    PriceFeedResponse:
+      $ref: '#/components/schemas/PriceFeed'
+      title: PriceFeedResponse
     ValidationError:
       properties:
         loc:
@@ -175,23 +178,6 @@ components:
       - market_hours
       - attributes
       title: PriceFeed
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    PriceFeedsResponse:
-      items:
-        $ref: '#/components/schemas/PriceFeed'
-      type: array
-      title: PriceFeedsResponse
-    PriceFeedResponse:
-      $ref: '#/components/schemas/PriceFeed'
-      title: PriceFeedResponse
     MarketHours:
       properties:
         is_open:
@@ -213,3 +199,17 @@ components:
       - next_open
       - next_close
       title: MarketHours
+    PriceFeedsResponse:
+      items:
+        $ref: '#/components/schemas/PriceFeed'
+      type: array
+      title: PriceFeedsResponse
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError

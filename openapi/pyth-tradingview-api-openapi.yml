@@ -519,27 +519,31 @@ paths:
                     s: 0
 components:
   schemas:
-    ValidationError:
+    TradingViewStreamResponse:
       properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
+        id:
           type: string
-          title: Message
-        type:
+          title: Id
+        p:
+          type: number
+          title: P
+        t:
+          type: integer
+          title: T
+        f:
           type: string
-          title: Error Type
+          title: F
+        s:
+          type: integer
+          title: S
       type: object
       required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
+      - id
+      - p
+      - t
+      - f
+      - s
+      title: TradingViewStreamResponse
     TradingViewSearchSymbolResultItem:
       properties:
         description:
@@ -569,47 +573,6 @@ components:
       - ticker
       - type
       title: TradingViewSearchSymbolResultItem
-    TradingViewSearchResponse:
-      items:
-        $ref: '#/components/schemas/TradingViewSearchSymbolResultItem'
-      type: array
-      title: TradingViewSearchResponse
-    TradingViewGroupsResponse:
-      properties:
-        s:
-          type: string
-          title: S
-        d:
-          $ref: '#/components/schemas/TradingViewGroupList'
-      type: object
-      required:
-      - s
-      - d
-      title: TradingViewGroupsResponse
-    TradingViewGroupList:
-      properties:
-        groups:
-          items:
-            $ref: '#/components/schemas/TradingViewGroup'
-          type: array
-          title: Groups
-      type: object
-      required:
-      - groups
-      title: TradingViewGroupList
-    TradingViewErrorResponse:
-      properties:
-        s:
-          type: string
-          title: S
-        errmsg:
-          type: string
-          title: Errmsg
-      type: object
-      required:
-      - s
-      - errmsg
-      title: TradingViewErrorResponse
     TradingViewHistoryResponse:
       properties:
         s:
@@ -655,6 +618,51 @@ components:
       - c
       - v
       title: TradingViewHistoryResponse
+    TradingViewErrorResponse:
+      properties:
+        s:
+          type: string
+          title: S
+        errmsg:
+          type: string
+          title: Errmsg
+      type: object
+      required:
+      - s
+      - errmsg
+      title: TradingViewErrorResponse
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    TradingViewGroupList:
+      properties:
+        groups:
+          items:
+            $ref: '#/components/schemas/TradingViewGroup'
+          type: array
+          title: Groups
+      type: object
+      required:
+      - groups
+      title: TradingViewGroupList
     TradingViewSymbolsResponse:
       properties:
         name:
@@ -734,67 +742,11 @@ components:
       - supported_resolutions
       - exchange
       title: TradingViewSymbolsResponse
-    TradingViewConfigResponse:
-      properties:
-        supported_resolutions:
-          items:
-            type: string
-          type: array
-          title: Supported Resolutions
-        supports_group_request:
-          type: boolean
-          title: Supports Group Request
-        supports_marks:
-          type: boolean
-          title: Supports Marks
-        supports_search:
-          type: boolean
-          title: Supports Search
-        supports_timescale_marks:
-          type: boolean
-          title: Supports Timescale Marks
-      type: object
-      required:
-      - supported_resolutions
-      - supports_group_request
-      - supports_marks
-      - supports_search
-      - supports_timescale_marks
-      title: TradingViewConfigResponse
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    TradingViewStreamResponse:
-      properties:
-        id:
-          type: string
-          title: Id
-        p:
-          type: number
-          title: P
-        t:
-          type: integer
-          title: T
-        f:
-          type: string
-          title: F
-        s:
-          type: integer
-          title: S
-      type: object
-      required:
-      - id
-      - p
-      - t
-      - f
-      - s
-      title: TradingViewStreamResponse
+    TradingViewSearchResponse:
+      items:
+        $ref: '#/components/schemas/TradingViewSearchSymbolResultItem'
+      type: array
+      title: TradingViewSearchResponse
     TradingViewSymbolInfoResponse:
       properties:
         s:
@@ -1000,6 +952,45 @@ components:
       - bar-fillgaps
       - typespecs
       title: TradingViewSymbolInfoResponse
+    TradingViewConfigResponse:
+      properties:
+        supported_resolutions:
+          items:
+            type: string
+          type: array
+          title: Supported Resolutions
+        supports_group_request:
+          type: boolean
+          title: Supports Group Request
+        supports_marks:
+          type: boolean
+          title: Supports Marks
+        supports_search:
+          type: boolean
+          title: Supports Search
+        supports_timescale_marks:
+          type: boolean
+          title: Supports Timescale Marks
+      type: object
+      required:
+      - supported_resolutions
+      - supports_group_request
+      - supports_marks
+      - supports_search
+      - supports_timescale_marks
+      title: TradingViewConfigResponse
+    TradingViewGroupsResponse:
+      properties:
+        s:
+          type: string
+          title: S
+        d:
+          $ref: '#/components/schemas/TradingViewGroupList'
+      type: object
+      required:
+      - s
+      - d
+      title: TradingViewGroupsResponse
     TradingViewGroup:
       properties:
         id:
@@ -1009,3 +1000,12 @@ components:
       required:
       - id
       title: TradingViewGroup
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
