@@ -22,3 +22,168 @@
     detected: '2026-10-15'
   status: not-a-workflow
   arazzo: null
+- slug: pyth-crates-io
+  label: crates.io
+  partner: crates-io
+  partner_name: crates.io
+  category: official SDK (Rust)
+  type: register
+  channel: package-registry
+  evidence: https://crates.io/crates/pyth-sdk
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: crates.io (public registry JSON)
+    spec_file: null
+    language: Rust
+    packages:
+    - name: pyth-sdk
+      version: 0.8.0
+      released: '2023-07-07'
+      released_field: updated_at
+      lapsed: true
+      page: https://crates.io/crates/pyth-sdk
+      repo_leg: domain:pyth.network
+      publisher_leg: org:pyth-network
+      matched_by: domain
+    current: false
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: pyth-npm-registry
+  label: npm registry
+  partner: npm
+  partner_name: npm registry
+  category: official SDK (JavaScript/TypeScript)
+  type: register
+  channel: package-registry
+  evidence: https://www.npmjs.com/package/@pythnetwork/client
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: npm registry (public registry JSON)
+    spec_file: null
+    language: JavaScript/TypeScript
+    packages:
+    - name: '@pythnetwork/client'
+      version: 2.22.1
+      released: '2026-07-17'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@pythnetwork/client
+      repo_leg: domain:pyth.network
+      publisher_leg: email:pyth.network
+      matched_by: domain
+    - name: '@pythnetwork/entropy-sdk-solidity'
+      version: 2.2.1
+      released: '2026-07-17'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@pythnetwork/entropy-sdk-solidity
+      repo_leg: github-org:pyth-network
+      publisher_leg: email:pyth.network
+      matched_by: domain
+    - name: '@pythnetwork/express-relay-js'
+      version: 0.29.0
+      released: '2026-07-17'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@pythnetwork/express-relay-js
+      repo_leg: github-org:pyth-network
+      publisher_leg: email:pyth.network
+      matched_by: domain
+    - name: '@pythnetwork/hermes-client'
+      version: 3.1.0
+      released: '2026-07-17'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@pythnetwork/hermes-client
+      repo_leg: domain:pyth.network
+      publisher_leg: email:pyth.network
+      matched_by: domain
+    - name: '@pythnetwork/price-service-client'
+      version: 1.11.0
+      released: '2026-07-17'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@pythnetwork/price-service-client
+      repo_leg: domain:pyth.network
+      publisher_leg: email:pyth.network
+      matched_by: domain
+    - name: '@pythnetwork/pyth-evm-js'
+      version: 2.0.0
+      released: '2026-07-17'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@pythnetwork/pyth-evm-js
+      repo_leg: domain:pyth.network
+      publisher_leg: email:pyth.network
+      matched_by: domain
+    - name: '@pythnetwork/pyth-lazer-sdk'
+      version: 7.0.0
+      released: '2026-07-28'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@pythnetwork/pyth-lazer-sdk
+      repo_leg: github-org:pyth-network
+      publisher_leg: email:pyth.network
+      matched_by: domain
+    - name: '@pythnetwork/pyth-sdk-solidity'
+      version: 4.3.1
+      released: '2026-07-17'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@pythnetwork/pyth-sdk-solidity
+      repo_leg: github-org:pyth-network
+      publisher_leg: email:pyth.network
+      matched_by: domain
+    - name: '@pythnetwork/pyth-solana-receiver'
+      version: 0.16.0
+      released: '2026-07-17'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@pythnetwork/pyth-solana-receiver
+      repo_leg: domain:pyth.network
+      publisher_leg: email:pyth.network
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: pyth-pypi
+  label: PyPI
+  partner: pypi
+  partner_name: PyPI
+  category: official SDK (Python)
+  type: register
+  channel: package-registry
+  evidence: https://pypi.org/project/pythclient/
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: PyPI (public registry JSON)
+    spec_file: null
+    language: Python
+    packages:
+    - name: pythclient
+      version: 0.2.2
+      released: '2025-05-16'
+      released_field: upload_time
+      lapsed: false
+      page: https://pypi.org/project/pythclient/
+      repo_leg: github-org:pyth-network
+      publisher_leg: email:pyth.network
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
