@@ -64,6 +64,128 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Pyth is a company surfaced as a portfolio company of multicoin-capital and added to the API Evangelist network as a stub for enrichment. Sector: crypto-web3. This profile is a lead awaiting the enrichment pipeline.
+Pyth Network is a first-party financial oracle delivering real-time market data — 500+ price feeds spanning crypto, equities, FX, metals, rates, and commodities — to 100+ blockchains. Its pull-based Pyth Core oracle lets applications fetch signed prices from the Hermes service and verify them on-chain in a single transaction with 400ms updates, while Pyth Pro (Lazer) offers enterprise low-latency WebSocket streaming. Additional products include Entropy for on-chain randomness and Express Relay for MEV protection. Pyth exposes public REST/SSE APIs (Hermes, Benchmarks), first-party SDKs across TypeScript, Rust, Python and Solidity, a hosted MCP server, and a published agent-integration skill. Surfaced as a portfolio company of Multicoin Capital.
 
-Backed by: multicoin-capital — https://pyth.network
+**Areas:** Company · Web3 · Oracle · Price Feeds · Market Data · DeFi · Blockchain · Financial Data · Cryptocurrency
+
+## Pyth on APIs.io
+
+Everything profiled for Pyth is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/pyth/](https://apis.io/providers/pyth/)** — or go straight to one of the APIs or properties below.
+
+### APIs (5)
+
+- [Pyth Price Differences API](https://apis.io/apis/pyth/pyth-price-differences-api/) — The Price Differences API from Pyth — 1 operation(s) for price differences.
+- [Pyth Price Feeds API](https://apis.io/apis/pyth/pyth-price-feeds-api/) — The Price Feeds API from Pyth — 2 operation(s) for price feeds.
+- [Pyth Rest API](https://apis.io/apis/pyth/pyth-rest-api/) — The rest API from Pyth — 11 operation(s) for rest.
+- [Pyth TradingView API](https://apis.io/apis/pyth/pyth-tradingview-api/) — Routes for TradingView Data Integration.
+- [Pyth Updates API](https://apis.io/apis/pyth/pyth-updates-api/) — The Updates API from Pyth — 2 operation(s) for updates.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [pyth](https://apis.io/servers/pyth/pyth/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Pyth Agentic Access](https://apis.io/agentic-access/pyth/pyth-agentic-access/)
+
+#### Collections (5)
+
+Postman and Open Collection request collections.
+
+- [Benchmarks Price Differences API](https://apis.io/collections/pyth/open-pyth-price-differences-api/)
+- [Benchmarks Price Differences Price Feeds API](https://apis.io/collections/pyth/open-pyth-price-feeds-api/)
+- [Benchmarks Price Differences rest API](https://apis.io/collections/pyth/open-pyth-rest-api/)
+- [Benchmarks Price Differences TradingView API](https://apis.io/collections/pyth/open-pyth-tradingview-api/)
+- [Benchmarks Price Differences Updates API](https://apis.io/collections/pyth/open-pyth-updates-api/)
+
+#### Overlays (2)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Pyth Benchmarks Overlay](https://apis.io/overlays/pyth/pyth-benchmarks-overlay/)
+- [Pyth Hermes Overlay](https://apis.io/overlays/pyth/pyth-hermes-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Pyth Authentication](https://apis.io/security/pyth/pyth-authentication/)
+- [Pyth Domain Security](https://apis.io/security/pyth/pyth-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://pyth.network)
+- [Documentation](https://docs.pyth.network)
+- [Getting started](https://docs.pyth.network/price-feeds/core/getting-started)
+- [API reference](https://docs.pyth.network/price-feeds/core/api-reference)
+- [Sign up](https://pythdata.app)
+- [Blog](https://pyth.network/blog)
+- [Terms of service](https://pyth.network/legal/terms-conditions)
+- [Privacy policy](https://pyth.network/legal/privacy-policy)
+- [GitHub](https://github.com/pyth-network)
+- [Status](https://status.pyth.network)
+
+## API Evangelist rating
+
+**Kin Score 46.8** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 75.0 |
+| Contract quality | 45.4 |
+| Contract governance | 4.5 |
+| Operational transparency | 42.1 |
+| Developer ergonomics | 73.8 |
+| Access clarity | 34.2 |
+
+**Agent readiness 43.8** — agent-native
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | verified |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | na |
+| Error Semantics | verified |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | yes |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | — |
+
+**Regulatory alignment 23.1** — Securities & Market Data
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/pyth/](https://apis.io/providers/pyth/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Pyth: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/pyth/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
